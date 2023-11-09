@@ -1,5 +1,7 @@
 
 
-import '../css/test.scss'
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../../node_modules/@fortawesome/fontawesome-free/css/all.css'
 
-document.getElementById("hi").style.backgroundColor = 'black'
+import '../css/index.css'
+
