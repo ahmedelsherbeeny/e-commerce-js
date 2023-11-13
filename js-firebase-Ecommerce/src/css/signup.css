@@ -1,0 +1,27 @@
+form {
+  box-shadow: 8.8px 11.3px 7.6px -10px rgba(0, 0, 0, 0.032),
+    29.7px 38px 25.5px -10px rgba(0, 0, 0, 0.048),
+    133px 170px 114px -10px rgba(0, 0, 0, 0.08);
+}
+
+.input {
+  /* max-width: 250px; */
+  background-color: #f5f5f5;
+  color: #242424;
+  padding: 0.15rem 0.5rem;
+  min-height: 40px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  line-height: 1.15;
+  box-shadow: 0px 10px 20px -18px;
+}
+
+input:focus {
+  border-bottom: 2px solid #5b5fc7;
+  border-radius: 4px 4px 2px 2px;
+}
+
+input:hover {
+  outline: 1px solid lightgrey;
+}
