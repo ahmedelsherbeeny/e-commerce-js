@@ -31,15 +31,15 @@ input:hover {
   height: 100vh;
 }
 
-/* .or {
-  position: relative;
-} */
+.sign-btns {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+}
 
-/* .or::after {
-  position: absolute;
-  content: "";
-  border: 1px solid grey;
-  width: 200px;
-  margin-left: 20px;
-  display: block;
-} */
+.have-acc {
+  box-shadow: 8.8px 11.3px 7.6px -10px rgba(0, 0, 0, 0.032),
+    29.7px 38px 25.5px -10px rgba(0, 0, 0, 0.048),
+    133px 170px 114px -10px rgba(0, 0, 0, 0.08);
+  background: #efefed;
+}
