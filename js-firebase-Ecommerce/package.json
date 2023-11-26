@@ -26,6 +26,7 @@
     "bootstrap": "^5.3.2",
     "D": "^1.0.0",
     "firebase": "^10.5.2",
-    "html-webpack-plugin": "^5.5.3"
+    "html-webpack-plugin": "^5.5.3",
+    "sweetalert": "^2.1.2"
   }
 }
