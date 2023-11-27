@@ -3,6 +3,8 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../../node_modules/@fortawesome/fontawesome-free/css/all.css'
 import '../css/signup.css';
 import swal from 'sweetalert';
+import Swal from 'sweetalert2'
+
 import {
     auth,
     createUserWithEmailAndPassword,
@@ -134,10 +136,33 @@ signUpForm.addEventListener("submit", (e) => {
             })
             .then(() => {
                 signUpForm.reset();
-                window.location.href = "index.html";
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 2000);
+                const toast = Swal.mixin({
+
+                    position: "top-end",
+                    showConfirmButton: false,
+                    toast: true,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    background: "#fff",
+                });
+                toast.fire({
+                    icon: "success",
+                    title: "Signed Up Successfully",
+
+                })
             })
             .catch((error) => {
-                swal(error.message, "", "error");
+                if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+                    swal("This Email Already Exists", "", "error");
+
+
+                } else {
+
+                    swal(error.message, "", "error");
+                }
             });
     }
 });
@@ -156,7 +181,24 @@ gmailSignUpBtn.addEventListener("click", () => {
             // The signed-in user info.
             const user = result.user;
             console.log(user);
-            window.location.href = "index.html";
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 2000);
+
+            const toast = Swal.mixin({
+
+                position: "top-end",
+                showConfirmButton: false,
+                toast: true,
+                timer: 2000,
+                timerProgressBar: true,
+                background: "#fff",
+            });
+            toast.fire({
+                icon: "success",
+                title: "Signed Up Successfully",
+
+            })
 
 
 
@@ -164,6 +206,7 @@ gmailSignUpBtn.addEventListener("click", () => {
             // ...
         }).catch((error) => {
             // Handle Errors here.
+            console.log(error);
             const errorCode = error.code;
             const errorMessage = error.message;
             // The email of the user's account used.
