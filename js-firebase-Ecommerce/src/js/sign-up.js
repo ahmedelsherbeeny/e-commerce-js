@@ -30,6 +30,8 @@ const passwordInput = document.getElementById("password");
 const userNameError = document.getElementById("userNameError");
 const emailErrorEle = document.getElementById("emailError");
 const passwordErrorEle = document.getElementById("passwordError");
+const loader = document.getElementById("loader");
+
 
 
 const addBlurListener = (inputElement, errorElement, validationFunction) => {
@@ -59,6 +61,7 @@ addBlurListener(passwordInput, passwordErrorEle, validatePassword);
 // Add an event listener to the sign-up form
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
 
     const userName = userNameInput.value;
     const email = emailInput.value;
@@ -123,6 +126,8 @@ signUpForm.addEventListener("submit", (e) => {
     }
 
     if (!usernameError && !emailError && !passwordError) {
+        loader.classList.add("show");
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -139,6 +144,8 @@ signUpForm.addEventListener("submit", (e) => {
                 setTimeout(() => {
                     window.location.href = "index.html";
                 }, 2000);
+                loader.classList.remove("show");
+
                 const toast = Swal.mixin({
 
                     position: "top-end",
@@ -155,6 +162,8 @@ signUpForm.addEventListener("submit", (e) => {
                 })
             })
             .catch((error) => {
+                loader.classList.remove("show");
+
                 if (error.message === "Firebase: Error (auth/email-already-in-use).") {
                     swal("This Email Already Exists", "", "error");
 

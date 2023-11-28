@@ -7,7 +7,9 @@ import {
     getDocs
 } from "firebase/firestore";
 import {
-    getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged
+    getAuth, createUserWithEmailAndPassword,
+    GoogleAuthProvider, signInWithPopup, signOut,
+    signInWithEmailAndPassword, onAuthStateChanged
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -28,5 +30,6 @@ export const auth = getAuth(app);
 export const DB = getFirestore(app);
 export {
     doc, setDoc, createUserWithEmailAndPassword, collection,
-    getDocs, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged
+    getDocs, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword,
+    onAuthStateChanged
 };
