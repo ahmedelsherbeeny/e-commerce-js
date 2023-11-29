@@ -31,6 +31,8 @@ const userNameError = document.getElementById("userNameError");
 const emailErrorEle = document.getElementById("emailError");
 const passwordErrorEle = document.getElementById("passwordError");
 const loader = document.getElementById("loader");
+const loaderOverlay = document.getElementById("overlay");
+
 
 
 
@@ -127,6 +129,8 @@ signUpForm.addEventListener("submit", (e) => {
 
     if (!usernameError && !emailError && !passwordError) {
         loader.classList.add("show");
+        loaderOverlay.classList.add("show");
+
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -145,6 +149,8 @@ signUpForm.addEventListener("submit", (e) => {
                     window.location.href = "index.html";
                 }, 2000);
                 loader.classList.remove("show");
+                loaderOverlay.classList.remove("show");
+
 
                 const toast = Swal.mixin({
 
@@ -163,12 +169,15 @@ signUpForm.addEventListener("submit", (e) => {
             })
             .catch((error) => {
                 loader.classList.remove("show");
+                loaderOverlay.classList.remove("show");
+
 
                 if (error.message === "Firebase: Error (auth/email-already-in-use).") {
                     swal("This Email Already Exists", "", "error");
 
 
                 } else {
+                    console.log(error.message);
 
                     swal(error.message, "", "error");
                 }

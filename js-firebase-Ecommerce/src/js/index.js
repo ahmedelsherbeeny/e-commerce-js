@@ -6,11 +6,9 @@ import '../../node_modules/@fortawesome/fontawesome-free/css/all.css'
 import '../css/index.css'
 import {
     auth,
-    createUserWithEmailAndPassword,
-    doc,
-    setDoc,
-    DB, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut
+    signOut
 } from "./firebase.js";
+
 
 
 

@@ -31,6 +31,8 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const emailErrorEle = document.getElementById("emailError");
 const passwordErrorEle = document.getElementById("passwordError");
+const loader = document.getElementById("loader");
+const loaderOverlay = document.getElementById("overlay");
 
 
 const addBlurListener = (inputElement, errorElement, validationFunction) => {
@@ -112,6 +114,8 @@ signInForm.addEventListener("submit", (e) => {
     }
 
     if (!emailError && !passwordError) {
+        loader.classList.add("show");
+        loaderOverlay.classList.add("show");
         signInWithEmailAndPassword(auth, email, password)
             .then((Credential) => {
 
@@ -123,6 +127,8 @@ signInForm.addEventListener("submit", (e) => {
                 setTimeout(() => {
                     window.location.href = "index.html";
                 }, 2000);
+                loader.classList.remove("show");
+                loaderOverlay.classList.remove("show");
                 const toast = Swal.mixin({
 
                     position: "top-end",
@@ -139,6 +145,8 @@ signInForm.addEventListener("submit", (e) => {
                 })
             })
             .catch((error) => {
+                loader.classList.remove("show");
+                loaderOverlay.classList.remove("show");
                 if (error.message === "Firebase: Error (auth/invalid-login-credentials).") {
                     swal("Invalid Email or Password", "", "error");
 
