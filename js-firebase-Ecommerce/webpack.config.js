@@ -35,6 +35,7 @@ module.exports = {
     },
     module: {
         rules: [
+
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -43,6 +44,21 @@ module.exports = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'images/', // Output directory for images
+                        },
+                    },
+                ],
+            },
+
+
+
 
 
         ],

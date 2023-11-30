@@ -9,6 +9,8 @@ import {
     signOut
 } from "./firebase.js";
 
+import eLogo from '../images/e-logo.jpg';
+
 
 
 

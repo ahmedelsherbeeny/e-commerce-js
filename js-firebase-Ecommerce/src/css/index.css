@@ -1,7 +1,7 @@
 a {
   text-decoration: none;
   font-size: 20px;
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
 .navbar {
@@ -28,4 +28,33 @@ footer .cizgi {
   footer .cizgi {
     border-right: none;
   }
+}
+
+.navbar-brand img {
+  width: 200px;
+  height: 70px;
+  border-radius: 15px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar-nav.flex-row {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav.flex-row .nav-item {
+  margin-right: 7px;
 }
