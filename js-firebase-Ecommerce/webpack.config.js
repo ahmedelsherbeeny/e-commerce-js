@@ -1,6 +1,8 @@
 
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 
 module.exports = {
@@ -10,7 +12,7 @@ module.exports = {
     },
     entry: {
         signUp: "./src/js/sign-up.js",
-        index: "./src/js/index.js",
+        index: ["./src/js/index.js", "./src/css/index.css"],
         features: "./src/js/featured.js",
         editProfile: "./src/js/edit-profile.js",
         signIn: "./src/js/sign-in.js",
@@ -38,11 +40,11 @@ module.exports = {
 
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
@@ -93,6 +95,10 @@ module.exports = {
             filename: 'sign-in.html',
             template: 'src/sign-in.html',
             chunks: ['signIn']
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].bundle.css',
+            chunkFilename: '[id].css',
         }),
 
     ]
