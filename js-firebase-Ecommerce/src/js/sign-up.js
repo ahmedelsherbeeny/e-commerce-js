@@ -4,6 +4,9 @@ import '../../node_modules/@fortawesome/fontawesome-free/css/all.css'
 import '../css/signup.css';
 import swal from 'sweetalert';
 import Swal from 'sweetalert2'
+import '../js/particles.min.js';
+import '../js/custom.js';
+
 
 import {
     auth,
