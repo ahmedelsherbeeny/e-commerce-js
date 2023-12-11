@@ -1,3 +1,9 @@
+
+import {
+    auth, onAuthStateChanged, signOut
+} from "./firebase.js";
+
+
 navBar()
 
 function navBar() {
@@ -7,3 +13,43 @@ function navBar() {
     })
 
 }
+
+
+
+
+// Get DOM elements
+const userDropdownBtn = document.getElementById("userDropdown");
+const signinBtn = document.querySelector('#signin');
+const signupBtn = document.querySelector('#signup');
+const signOutBtn = document.querySelector('#signOutBtn');
+
+// Check the authentication state
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in
+        userDropdownBtn.style.display = 'block'; // Show the user profile dropdown
+
+        signinBtn.style.display = "none";
+        signupBtn.style.display = "none";
+
+        // Update the user profile button with the username or email
+        userDropdownBtn.textContent = user.displayName || user.email;
+
+        // Handle sign out
+        signOutBtn.addEventListener('click', () => {
+            signOut(auth)
+                .then(() => {
+                    // Redirect or perform any additional actions after sign out
+                    window.location.href = "sign-in.html"; // Redirect to a sign-out success page
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        });
+    } else {
+        // User is signed out
+        userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
+        signinBtn.style.display = "none";
+        signupBtn.style.display = "none";
+    }
+});

@@ -62,6 +62,8 @@ const addBlurListener = (inputElement, errorElement, validationFunction) => {
 addBlurListener(userNameInput, userNameError, validateUsername);
 addBlurListener(emailInput, emailErrorEle, validateEmail);
 addBlurListener(passwordInput, passwordErrorEle, validatePassword);
+let userData = {}; // User data object
+let userKey = ""; // User key (uid)
 
 // Add an event listener to the sign-up form
 signUpForm.addEventListener("submit", (e) => {
@@ -139,10 +141,15 @@ signUpForm.addEventListener("submit", (e) => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 const userDocRef = doc(DB, "Users", user.uid);
-                const userData = {
+                // Update user data and user key
+                userData = {
                     username: userName,
                     email: user.email,
                 };
+                userKey = user.uid;
+
+                localStorage.setItem("userData", JSON.stringify(userData));
+                localStorage.setItem("userKey", JSON.stringify(userKey));
 
                 return setDoc(userDocRef, userData);
             })
@@ -199,9 +206,18 @@ gmailSignUpBtn.addEventListener("click", () => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             console.log(credential);
             const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            console.log(user);
+
+            // Update user data and user key
+            userData = {
+                email: result.user.email,
+                displayName: result.user.displayName,
+            };
+            userKey = result.user.uid;
+
+            localStorage.setItem('userData', JSON.stringify(userData));
+            localStorage.setItem('userKey', JSON.stringify(userKey));
+
+
             setTimeout(() => {
                 window.location.href = "index.html";
             }, 2000);
