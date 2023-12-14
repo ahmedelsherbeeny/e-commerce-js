@@ -9,7 +9,7 @@ import {
 import {
     getAuth, createUserWithEmailAndPassword,
     GoogleAuthProvider, signInWithPopup, signOut,
-    signInWithEmailAndPassword, onAuthStateChanged
+    signInWithEmailAndPassword, onAuthStateChanged, updateProfile
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,5 +31,5 @@ export const DB = getFirestore(app);
 export {
     doc, setDoc, createUserWithEmailAndPassword, collection,
     getDocs, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword,
-    onAuthStateChanged
+    onAuthStateChanged, updateProfile
 };

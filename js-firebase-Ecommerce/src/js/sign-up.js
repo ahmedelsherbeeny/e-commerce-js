@@ -13,7 +13,7 @@ import {
     createUserWithEmailAndPassword,
     doc,
     setDoc,
-    DB, GoogleAuthProvider, signInWithPopup, signInWithRedirect
+    DB, GoogleAuthProvider, signInWithPopup, updateProfile
 } from "./firebase.js";
 import {
     validateUsername,
@@ -66,9 +66,146 @@ let userData = {}; // User data object
 let userKey = ""; // User key (uid)
 
 // Add an event listener to the sign-up form
+// signUpForm.addEventListener("submit", (e) => {
+//     e.preventDefault();
+
+
+//     const userName = userNameInput.value;
+//     const email = emailInput.value;
+//     const password = passwordInput.value;
+
+//     const usernameError = validateUsername(userName);
+//     const emailError = validateEmail(email);
+//     const passwordError = validatePassword(password);
+
+//     const showErrorStyle = (errorElement) => {
+//         errorElement.style.background = '#f3bdbd';
+//         errorElement.style.width = '58%';
+//         errorElement.style.marginTop = '6px';
+//         errorElement.style.borderRadius = '4px';
+//         errorElement.style.fontSize = '14px';
+//         errorElement.style.fontFamily = 'math';
+//         errorElement.style.padding = '2px';
+//     };
+
+//     const clearErrorStyle = (errorElement) => {
+//         clearError(errorElement);
+//         errorElement.removeAttribute('style');
+//     };
+
+//     if (!userName) {
+//         showError(userNameError, "Username is required");
+//         showErrorStyle(userNameError);
+//     } else {
+//         clearErrorStyle(userNameError);
+//     }
+
+//     if (!email) {
+//         showError(emailErrorEle, "Email is required");
+//         showErrorStyle(emailErrorEle);
+//     } else {
+//         clearErrorStyle(emailErrorEle);
+//     }
+
+//     if (!password) {
+//         showError(passwordErrorEle, "Password is required");
+//         showErrorStyle(passwordErrorEle);
+//     } else {
+//         clearErrorStyle(passwordErrorEle);
+//     }
+
+//     if (usernameError) {
+//         showError(userNameError, usernameError);
+//     } else {
+//         clearErrorStyle(userNameError);
+//     }
+
+//     if (emailError) {
+//         showError(emailErrorEle, emailError);
+//     } else {
+//         clearErrorStyle(emailErrorEle);
+//     }
+
+//     if (passwordError) {
+//         showError(passwordErrorEle, passwordError);
+//     } else {
+//         clearErrorStyle(passwordErrorEle);
+//     }
+
+//     if (!usernameError && !emailError && !passwordError) {
+//         loader.classList.add("show");
+//         loaderOverlay.classList.add("show");
+
+
+//         createUserWithEmailAndPassword(auth, email, password)
+//             .then((userCredential) => {
+//                 const user = userCredential.user;
+//                 const userDocRef = doc(DB, "Users", user.uid);
+//                 // Update user data and user key
+//                 userData = {
+//                     username: userName,
+//                     email: user.email,
+//                     displayName: userName
+//                 };
+//                 userKey = user.uid;
+
+//                 localStorage.setItem("userData", JSON.stringify(userData));
+//                 localStorage.setItem("userKey", JSON.stringify(userKey));
+
+//                 return setDoc(userDocRef, userData);
+//             }).then(() => {
+//                 const user = auth.currentUser; // Get the current user
+
+//                 // Set the display name for the user
+//                 return updateProfile(user, {
+//                     displayName: userName, // Set the display name to the username
+//                 });
+//             })
+//             .then(() => {
+//                 signUpForm.reset();
+//                 setTimeout(() => {
+//                     window.location.href = "index.html";
+//                 }, 2000);
+//                 loader.classList.remove("show");
+//                 loaderOverlay.classList.remove("show");
+
+
+//                 const toast = Swal.mixin({
+
+//                     position: "top-end",
+//                     showConfirmButton: false,
+//                     toast: true,
+//                     timer: 2000,
+//                     timerProgressBar: true,
+//                     background: "#fff",
+//                 });
+//                 toast.fire({
+//                     icon: "success",
+//                     title: "Signed Up Successfully",
+
+//                 })
+//             })
+//             .catch((error) => {
+//                 loader.classList.remove("show");
+//                 loaderOverlay.classList.remove("show");
+
+
+//                 if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+//                     swal("This Email Already Exists", "", "error");
+
+
+//                 } else {
+//                     console.log(error.message);
+
+//                     swal(error.message, "", "error");
+//                 }
+//             });
+//     }
+// });
+
+
 signUpForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
 
     const userName = userNameInput.value;
     const email = emailInput.value;
@@ -136,59 +273,60 @@ signUpForm.addEventListener("submit", (e) => {
         loader.classList.add("show");
         loaderOverlay.classList.add("show");
 
-
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 const userDocRef = doc(DB, "Users", user.uid);
                 // Update user data and user key
-                userData = {
+                const userData = {
                     username: userName,
                     email: user.email,
+                    displayName: userName
                 };
-                userKey = user.uid;
+                const userKey = user.uid;
 
                 localStorage.setItem("userData", JSON.stringify(userData));
                 localStorage.setItem("userKey", JSON.stringify(userKey));
 
-                return setDoc(userDocRef, userData);
-            })
-            .then(() => {
-                signUpForm.reset();
-                setTimeout(() => {
-                    window.location.href = "index.html";
-                }, 2000);
-                loader.classList.remove("show");
-                loaderOverlay.classList.remove("show");
+                return setDoc(userDocRef, userData)
+                    .then(() => {
+                        const user = auth.currentUser; // Get the current user
 
+                        // Set the display name for the user
+                        return updateProfile(user, {
+                            displayName: userName, // Set the display name to the username
+                        });
+                    })
+                    .then(() => {
+                        signUpForm.reset();
+                        setTimeout(() => {
+                            window.location.href = "index.html";
+                        }, 2000);
+                        loader.classList.remove("show");
+                        loaderOverlay.classList.remove("show");
 
-                const toast = Swal.mixin({
-
-                    position: "top-end",
-                    showConfirmButton: false,
-                    toast: true,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    background: "#fff",
-                });
-                toast.fire({
-                    icon: "success",
-                    title: "Signed Up Successfully",
-
-                })
+                        const toast = Swal.mixin({
+                            position: "top-end",
+                            showConfirmButton: false,
+                            toast: true,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            background: "#fff",
+                        });
+                        toast.fire({
+                            icon: "success",
+                            title: "Signed Up Successfully",
+                        });
+                    });
             })
             .catch((error) => {
                 loader.classList.remove("show");
                 loaderOverlay.classList.remove("show");
 
-
                 if (error.message === "Firebase: Error (auth/email-already-in-use).") {
                     swal("This Email Already Exists", "", "error");
-
-
                 } else {
                     console.log(error.message);
-
                     swal(error.message, "", "error");
                 }
             });
@@ -216,6 +354,8 @@ gmailSignUpBtn.addEventListener("click", () => {
 
             localStorage.setItem('userData', JSON.stringify(userData));
             localStorage.setItem('userKey', JSON.stringify(userKey));
+
+
 
 
             setTimeout(() => {

@@ -17,7 +17,6 @@ function navBar() {
 
 
 
-// Get DOM elements
 const userDropdownBtn = document.getElementById("userDropdown");
 const signinBtn = document.querySelector('#signin');
 const signupBtn = document.querySelector('#signup');
@@ -33,7 +32,7 @@ onAuthStateChanged(auth, (user) => {
         signupBtn.style.display = "none";
 
         // Update the user profile button with the username or email
-        userDropdownBtn.textContent = user.displayName || user.email;
+        userDropdownBtn.textContent = user.displayName
 
         // Handle sign out
         signOutBtn.addEventListener('click', () => {
@@ -49,7 +48,7 @@ onAuthStateChanged(auth, (user) => {
     } else {
         // User is signed out
         userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
-        signinBtn.style.display = "none";
-        signupBtn.style.display = "none";
+        signinBtn.style.display = "block"; // Show the "Sign In" button
+        signupBtn.style.display = "block"; // Show the "Sign Up" button
     }
 });
