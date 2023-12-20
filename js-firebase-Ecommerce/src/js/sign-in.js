@@ -36,6 +36,8 @@ const emailErrorEle = document.getElementById("emailError");
 const passwordErrorEle = document.getElementById("passwordError");
 const loader = document.getElementById("loader");
 const loaderOverlay = document.getElementById("overlay");
+let userData = {}; // User data object
+let userKey = ""; // User key (uid)
 
 
 const addBlurListener = (inputElement, errorElement, validationFunction) => {
@@ -122,8 +124,16 @@ signInForm.addEventListener("submit", (e) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((Credential) => {
 
-                console.log(Credential);
+                const user = Credential.user
+                // Update user data and user key
+                userData = {
+                    displayName: user.displayName,
+                    email: user.email,
+                };
+                userKey = user.uid;
 
+                localStorage.setItem("userData", JSON.stringify(userData));
+                localStorage.setItem("userKey", JSON.stringify(userKey));
             })
             .then(() => {
                 signInForm.reset();

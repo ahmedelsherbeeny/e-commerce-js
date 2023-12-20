@@ -2,6 +2,8 @@
 import {
     auth, onAuthStateChanged, signOut
 } from "./firebase.js";
+import '../css/navbar.css'
+
 
 
 navBar()
@@ -38,6 +40,10 @@ onAuthStateChanged(auth, (user) => {
         signOutBtn.addEventListener('click', () => {
             signOut(auth)
                 .then(() => {
+
+
+                    localStorage.removeItem("userData");
+                    localStorage.removeItem("userKey");
                     // Redirect or perform any additional actions after sign out
                     window.location.href = "sign-in.html"; // Redirect to a sign-out success page
                 })
@@ -51,4 +57,23 @@ onAuthStateChanged(auth, (user) => {
         signinBtn.style.display = "block"; // Show the "Sign In" button
         signupBtn.style.display = "block"; // Show the "Sign Up" button
     }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var navbar = document.getElementById("navbar");
+    var navbarOffsetTop = navbar.offsetTop;
+    var scrollThreshold = 100; // Adjust this value as needed
+
+    function updateNavbarPosition() {
+        if (window.pageYOffset >= scrollThreshold) {
+            navbar.classList.add("sticky");
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
+    // Update the navbar position on scroll
+    window.addEventListener("scroll", updateNavbarPosition);
 });

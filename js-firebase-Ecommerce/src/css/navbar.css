@@ -81,3 +81,21 @@ footer .cizgi {
   height: 60px;
   border-radius: 15px;
 }
+.dropdown-menu[data-bs-popper] {
+  left: -104px;
+}
+
+.navbar {
+  transition: background-color 0.3s ease-in-out, height 0.5s ease-in-out;
+  height: 120px;
+}
+
+.navbar.sticky {
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #f9f9f9 !important; /* Change to the desired darker background color */
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
