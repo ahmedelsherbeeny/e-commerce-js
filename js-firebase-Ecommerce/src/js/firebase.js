@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import {
     getFirestore, doc,
     setDoc, collection,
-    getDocs
+    getDocs, query, where
 } from "firebase/firestore";
 import {
     getAuth, createUserWithEmailAndPassword,
@@ -31,5 +31,6 @@ export const DB = getFirestore(app);
 export {
     doc, setDoc, createUserWithEmailAndPassword, collection,
     getDocs, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword,
-    onAuthStateChanged, updateProfile
+    onAuthStateChanged, updateProfile,
+    query, where
 };

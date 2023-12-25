@@ -14,10 +14,10 @@ import Swal from 'sweetalert2'
 
 import {
     auth,
-    doc,
-    setDoc,
-    DB,
-    signInWithEmailAndPassword
+    collection,
+    getDocs,
+    query,
+    signInWithEmailAndPassword, DB, where
 } from "./firebase.js";
 import {
     validateEmail,
@@ -95,6 +95,18 @@ signInForm.addEventListener("submit", (e) => {
         showErrorStyle(emailErrorEle);
     } else {
         clearErrorStyle(emailErrorEle);
+
+        // Check if the email exists in the database
+        const usersCollectionRef = collection(DB, "Users");
+        const emailQuery = query(usersCollectionRef, where("email", "==", email));
+        getDocs(emailQuery).then(querySnap => {
+            if (querySnap.empty) {
+                // Email does not exist
+                swal("This Email Does not exist", "", "error");
+                return;
+
+            }
+        })
     }
 
     if (!password) {
