@@ -4,19 +4,11 @@ import '../css/signup.css';
 import '../js/particles.min.js';
 import '../js/custom.js';
 
-
-
-
-
-
 import swal from 'sweetalert';
 import Swal from 'sweetalert2'
 
 import {
     auth,
-    doc,
-    setDoc,
-    DB,
     signInWithEmailAndPassword
 } from "./firebase.js";
 import {

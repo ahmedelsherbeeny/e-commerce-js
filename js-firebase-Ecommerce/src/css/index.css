@@ -6,3 +6,13 @@ body {
   background: #efefed;
   height: 150vh;
 }
+
+.products {
+  display: flex;
+  gap: 2;
+  justify-content: center;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+}

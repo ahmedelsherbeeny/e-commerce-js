@@ -16,23 +16,21 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-xl px-2" style="background-color: #ffffff;">
+    <nav class="navbar navbar-expand-xl px-2" id="navbar" style="background-color: #ffffff;">
         <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
         <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
-            <!-- <span class="navbar-toggler-icon"></span> -->
             <div class="nav-toggler-icon">
                 <span></span>
                 <span></span>
                 <span></span>
-
             </div>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  me-auto">
-                <li class="nav-item  ps-1 ">
+                <li class="nav-item  ps-1">
                     <a class="nav-link" href="index.html"><i class="fa fa-home fa-fw me-1"></i>Home</a>
                 </li>
                 <li class="nav-item ps-1">
@@ -42,33 +40,42 @@
                     <a class="nav-link" href="featured.html"><i class="fas fa-poll fa-fw me-1"></i>Featured</a>
                 </li>
                 <li class="nav-item pl-1">
-                    <a class="nav-link" href="#"><i class="fab fa-angellist fa-fw  me-1"></i>Recommended</a>
+                    <a class="nav-link" href="#"><i class="fab fa-angellist fa-fw me-1"></i>Recommended</a>
                 </li>
             </ul>
-            <form class="form-inline  my-2 my-lg-0 d-flex   justify-content-center align-items-center  gap-5">
+            <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-5">
                 <div class="search-cart d-flex flex-grow-1 justify-content-center align-items-center gap-1">
-
                     <input class="form-control me-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <div class="cart d-flex position-relative" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                         <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
                         <span class="badge rounded-pill bg-danger counter position-absolute text-center"
                             style="top: -20px; right: -9px;"> 0</span>
-
-
                     </div>
                 </div>
-                <div class="btns d-flex justify-content-center align-items-center gap-1">
+                <div class="sign-btns d-flex justify-content-center align-items-center gap-1" id="sign-btns">
 
                     <a role="button" class="btn btn-primary py-2  text-center" href="sign-in.html"
-                        style="text-wrap: nowrap; width:120px">Sign
+                        style="text-wrap: nowrap; width:120px;display: none;" id="signin">Sign
                         In</a>
 
-                    <a role="button" class="btn btn-info py-2  text-center" id="signOutBtn" href="sign-up.html"
-                        style="text-wrap: nowrap; width:120px">Sign
+                    <a role="button" class="btn btn-info py-2   text-center" id="signup" href="sign-up.html"
+                        style="text-wrap: nowrap; width:120px;display: none;">Sign
                         Up</a>
                 </div>
-
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" style="display: none;" type="button"
+                        id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        User Info
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#" id="signOutBtn">Sign Out</a></li>
+                    </ul>
+                </div>
             </form>
         </div>
     </nav>
