@@ -75,6 +75,11 @@ footer .cizgi {
     flex-wrap: wrap;
   }
 }
+@media (max-width: 1200px) {
+  .navbar-collapse {
+    background-color: #ffffff;
+  }
+}
 
 .navbar-brand img {
   width: 150px;
@@ -82,7 +87,19 @@ footer .cizgi {
   border-radius: 15px;
 }
 .dropdown-menu[data-bs-popper] {
-  left: -104px;
+  left: -74px;
+}
+
+@media (max-width: 449px) {
+  .dropdown-menu[data-bs-popper] {
+    left: 0px;
+  }
+}
+@media (max-width: 449px) {
+  .dropdown {
+    display: flex;
+    width: 100%;
+  }
 }
 
 .navbar {
