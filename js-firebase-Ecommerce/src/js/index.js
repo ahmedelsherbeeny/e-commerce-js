@@ -19,6 +19,7 @@ const productDocRef = collection(DB, "products");
 
 
 
+
 async function getProductData() {
     try {
         const querySnapshot = await getDocs(productDocRef);

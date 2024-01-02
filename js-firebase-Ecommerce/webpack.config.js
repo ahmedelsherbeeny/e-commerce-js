@@ -9,12 +9,15 @@ module.exports = {
     mode: "development",
     resolve: {
         modules: ['node_modules'],
+        fallback: { crypto: false },
+
     },
     entry: {
         signUp: "./src/js/sign-up.js",
         index: ["./src/js/index.js", "./src/css/index.css"],
         features: "./src/js/featured.js",
         editProfile: "./src/js/edit-profile.js",
+        profile: "./src/js/profile.js",
         signIn: "./src/js/sign-in.js",
 
     },
@@ -89,6 +92,12 @@ module.exports = {
             filename: 'edit-profile.html',
             template: 'src/edit-profile.html',
             chunks: ['editProfile']
+        }),
+        new htmlWebpackPlugin({
+            title: 'Profile',
+            filename: 'profile.html',
+            template: 'src/profile.html',
+            chunks: ['profile']
         }),
         new htmlWebpackPlugin({
             title: 'Sign-In',
