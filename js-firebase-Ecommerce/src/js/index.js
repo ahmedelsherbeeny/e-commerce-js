@@ -80,6 +80,22 @@ async function displayProductCards() {
 // Call the function to display product cards
 displayProductCards();
 
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('active');
+}
+
+// Event listener for toggling sidebar
+document.addEventListener('DOMContentLoaded', function () {
+    const togglerBtn = document.querySelector('.navbar-toggler');
+
+    if (togglerBtn) {
+        togglerBtn.addEventListener('click', function () {
+            toggleSidebar();
+        });
+    }
+});
+
 
 
 
