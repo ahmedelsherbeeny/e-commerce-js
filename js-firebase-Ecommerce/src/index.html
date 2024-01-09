@@ -22,18 +22,6 @@
 
     <div class="d-flex" id="wrapper">
 
-        <div class="sidebar" id="sidebar">
-            <!-- Sidebar content -->
-            <div class="sidebar-header">
-                Sidebar Header
-            </div>
-            <ul class="sidebar-menu">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Orders</a></li>
-                <!-- Add more sidebar items here -->
-            </ul>
-        </div>
         <div id="page-content-wrapper" style="flex-grow: 1;">
 
 
@@ -65,6 +53,26 @@
                         </li>
                         <li class="nav-item pl-1">
                             <a class="nav-link" href="#"><i class="fab fa-angellist fa-fw me-1"></i>Recommended</a>
+                        </li>
+                        <li>
+                            <div class="dropdown 
+                            ">
+                                <button class="dropdown-toggle" type="button" id="adminpanel" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Management
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="adminpanel">
+                                    <li><a class="dropdown-item" href="./profile.html">Products Mnagement</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" id="signOutBtn">Orders Management</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" id="signOutBtn">Users Management</a></li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-5">
@@ -114,15 +122,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
 
 
 
