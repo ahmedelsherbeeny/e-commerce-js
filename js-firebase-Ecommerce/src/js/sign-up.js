@@ -167,7 +167,7 @@ signUpForm.addEventListener("submit", (e) => {
                     .then(() => {
                         signUpForm.reset();
                         setTimeout(() => {
-                            // window.location.href = "index.html";
+                            window.location.href = "index.html";
                         }, 2000);
                         loader.classList.remove("show");
                         loaderOverlay.classList.remove("show");

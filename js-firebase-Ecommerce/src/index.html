@@ -62,15 +62,15 @@
                                     Management
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="adminpanel">
-                                    <li><a class="dropdown-item" href="./profile.html">Products Mnagement</a></li>
+                                    <li><a class="dropdown-item" href="#">Products Mnagement</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#" id="signOutBtn">Orders Management</a></li>
+                                    <li><a class="dropdown-item" href="#">Orders Management</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#" id="signOutBtn">Users Management</a></li>
+                                    <li><a class="dropdown-item" href="#">Users Management</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -95,7 +95,7 @@
                                 style="text-wrap: nowrap; width:120px;display: none;">Sign
                                 Up</a>
                         </div>
-                        <div class="dropdown 
+                        <!-- <div class="dropdown 
                             ">
                             <button class="dropdown-toggle" style="display: none;" type="button" id="userDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -108,7 +108,31 @@
                                 </li>
                                 <li><a class="dropdown-item" href="#" id="signOutBtn">Sign Out</a></li>
                             </ul>
-                        </div>
+                        </div> -->
+                        <button type="button"
+                            class="try-dropdown  dropdown-5 d-flex justify-content-center gap-4 bg-transparent border-none"
+                            style="border: none; text-wrap: nowrap; display: none; ">
+                            <div class="display-name"><i class="far fa-user-circle"></i>
+                            </div>
+                            <i class="fa fa-angle-down "></i>
+                            <ul class="dropdown_menu ps-0 dropdown_menu-5">
+                                <li class="dropdown_item-1"><a href="./profile.html">Profile</a> </li>
+                                <li class="dropdown_item-2"><a id="signOutBtn">Sign Out</a> </li>
+                            </ul>
+                        </button>
+
+
+                        <!-- <button
+                        class="user-dropdown  dropdown-5 d-flex justify-content-center gap-4 bg-transparent border-none"
+                        id="user-dropdown" style="border: none; text-wrap: nowrap;">
+                        <div class="user-name" id="user-name"><i class="far fa-user-circle"></i>
+                            Ahmed Elsherbeeny</div>
+                        <i class="fa fa-angle-down "></i>
+                        <ul class="dropdown_menu ps-0 dropdown_menu-5">
+                            <li class="dropdown_item-1"> Profile</li>
+                            <li class="dropdown_item-2">Sign Out</li>
+                        </ul>
+                    </button> -->
                     </form>
                 </div>
             </nav>
