@@ -19,41 +19,38 @@ function navBar() {
 
 
 
-const userDropdownBtn = document.getElementById("userDropdown");
+const userDropdownBtn = document.querySelector(".try-dropdown");
+const displayName = document.querySelector(".display-name");
+
 const signinBtn = document.querySelector('#signin');
 const signupBtn = document.querySelector('#signup');
 const signOutBtn = document.querySelector('#signOutBtn');
 
-// Check the authentication state
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in
-        userDropdownBtn.style.display = 'block'; // Show the user profile dropdown
+        checkAuthentication()
 
-        signinBtn.style.display = "none";
-        signupBtn.style.display = "none";
-
-        // Update the user profile button with the username or email
-        userDropdownBtn.textContent = user.displayName
 
         // Handle sign out
         signOutBtn.addEventListener('click', () => {
             signOut(auth)
                 .then(() => {
-
-
                     localStorage.removeItem("userData");
                     localStorage.removeItem("userKey");
                     // Redirect or perform any additional actions after sign out
                     window.location.href = "sign-in.html"; // Redirect to a sign-out success page
                 })
+
                 .catch((error) => {
                     console.log(error.message);
                 });
         });
     } else {
+        console.log("none");
         // User is signed out
-        userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
+        // userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
         signinBtn.style.display = "block"; // Show the "Sign In" button
         signupBtn.style.display = "block"; // Show the "Sign Up" button
     }
@@ -63,7 +60,6 @@ onAuthStateChanged(auth, (user) => {
 
 document.addEventListener("DOMContentLoaded", function () {
     var navbar = document.getElementById("navbar");
-    var navbarOffsetTop = navbar.offsetTop;
     var scrollThreshold = 100; // Adjust this value as needed
 
     function updateNavbarPosition() {
@@ -76,4 +72,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update the navbar position on scroll
     window.addEventListener("scroll", updateNavbarPosition);
+
+
+
 });
+
+
+function checkAuthentication() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const userKey = JSON.parse(localStorage.getItem("userKey"));
+
+    if (!userData || !userKey) {
+        // userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
+        signinBtn.style.display = "block"; // Show the "Sign In" button
+        signupBtn.style.display = "block"; // Show the "Sign Up" button
+    } else {
+        // The user is authenticated
+        // userDropdownBtn.style.display = 'block'; // Show the user profile dropdown
+        // displayName.textContent = userData.displayName;
+        signinBtn.style.display = "none"; // Hide the "Sign In" button
+        signupBtn.style.display = "none"; // Hide the "Sign Up" button
+    }
+}

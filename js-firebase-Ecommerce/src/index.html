@@ -18,78 +18,135 @@
 
 </head>
 
-
-
 <body>
 
+    <div class="d-flex" id="wrapper">
+
+        <div id="page-content-wrapper" style="flex-grow: 1;">
 
 
-
-
-
-    <nav class="navbar navbar-expand-xl px-2" id="navbar" style="background-color: #ffffff;">
-        <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
-        <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <div class="nav-toggler-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  me-auto">
-                <li class="nav-item active ps-1">
-                    <a class="nav-link" href="index.html"><i class="fa fa-home fa-fw me-1"></i>Home</a>
-                </li>
-                <li class="nav-item ps-1">
-                    <a class="nav-link" href="#"><i class="fa fa-shop fa-fw me-1"></i>Shop</a>
-                </li>
-                <li class="nav-item ps-1">
-                    <a class="nav-link" href="featured.html"><i class="fas fa-poll fa-fw me-1"></i>Featured</a>
-                </li>
-                <li class="nav-item pl-1">
-                    <a class="nav-link" href="#"><i class="fab fa-angellist fa-fw me-1"></i>Recommended</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-5">
-                <div class="search-cart d-flex flex-grow-1 justify-content-center align-items-center gap-1">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <div class="cart d-flex position-relative" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                        <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
-                        <span class="badge rounded-pill bg-danger counter position-absolute text-center"
-                            style="top: -20px; right: -9px;"> 0</span>
+            <nav class="navbar navbar-expand-xl px-2" id="navbar" style="background-color: #ffffff;z-index: 99">
+                <button class="navbar-toggler" type="button">
+                    Toggle Sidebar
+                </button>
+                <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
+                <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="nav-toggler-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                </div>
-                <div class="sign-btns d-flex justify-content-center align-items-center gap-1" id="sign-btns">
+                </button>
 
-                    <a role="button" class="btn btn-primary py-2  text-center" href="sign-in.html"
-                        style="text-wrap: nowrap; width:120px;display: none;" id="signin">Sign
-                        In</a>
-
-                    <a role="button" class="btn btn-info py-2   text-center" id="signup" href="sign-up.html"
-                        style="text-wrap: nowrap; width:120px;display: none;">Sign
-                        Up</a>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" style="display: none;" type="button"
-                        id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        User Info
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav  me-auto">
+                        <li class="nav-item active ps-1">
+                            <a class="nav-link" href="index.html"><i class="fa fa-home fa-fw me-1"></i>Home</a>
                         </li>
-                        <li><a class="dropdown-item" href="#" id="signOutBtn">Sign Out</a></li>
+                        <li class="nav-item ps-1">
+                            <a class="nav-link" href="#"><i class="fa fa-shop fa-fw me-1"></i>Shop</a>
+                        </li>
+                        <li class="nav-item ps-1">
+                            <a class="nav-link" href="featured.html"><i class="fas fa-poll fa-fw me-1"></i>Featured</a>
+                        </li>
+                        <li class="nav-item pl-1">
+                            <a class="nav-link" href="#"><i class="fab fa-angellist fa-fw me-1"></i>Recommended</a>
+                        </li>
+                        <li>
+                            <div class="dropdown 
+                            ">
+                                <button class="dropdown-toggle" type="button" id="adminpanel" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Management
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="adminpanel">
+                                    <li><a class="dropdown-item" href="#">Products Mnagement</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Orders Management</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Users Management</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
+                    <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-5">
+                        <div class="search-cart d-flex flex-grow-1 justify-content-center align-items-center gap-1">
+                            <input class="form-control me-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <div class="cart d-flex position-relative" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
+                                <span class="badge rounded-pill bg-danger counter position-absolute text-center"
+                                    style="top: -20px; right: -9px;"> 0</span>
+                            </div>
+                        </div>
+                        <div class="sign-btns d-flex justify-content-center align-items-center gap-1" id="sign-btns">
+
+                            <a role="button" class="btn btn-primary py-2  text-center" href="sign-in.html"
+                                style="text-wrap: nowrap; width:120px;display: none;" id="signin">Sign
+                                In</a>
+
+                            <a role="button" class="btn btn-info py-2   text-center" id="signup" href="sign-up.html"
+                                style="text-wrap: nowrap; width:120px;display: none;">Sign
+                                Up</a>
+                        </div>
+                        <!-- <div class="dropdown 
+                            ">
+                            <button class="dropdown-toggle" style="display: none;" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                User Info
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="./profile.html">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" id="signOutBtn">Sign Out</a></li>
+                            </ul>
+                        </div> -->
+                        <button type="button"
+                            class="try-dropdown  dropdown-5 d-flex justify-content-center gap-4 bg-transparent border-none"
+                            style="border: none; text-wrap: nowrap; display: none; ">
+                            <div class="display-name"><i class="far fa-user-circle"></i>
+                            </div>
+                            <i class="fa fa-angle-down "></i>
+                            <ul class="dropdown_menu ps-0 dropdown_menu-5">
+                                <li class="dropdown_item-1"><a href="./profile.html">Profile</a> </li>
+                                <li class="dropdown_item-2"><a id="signOutBtn">Sign Out</a> </li>
+                            </ul>
+                        </button>
+
+
+                        <!-- <button
+                        class="user-dropdown  dropdown-5 d-flex justify-content-center gap-4 bg-transparent border-none"
+                        id="user-dropdown" style="border: none; text-wrap: nowrap;">
+                        <div class="user-name" id="user-name"><i class="far fa-user-circle"></i>
+                            Ahmed Elsherbeeny</div>
+                        <i class="fa fa-angle-down "></i>
+                        <ul class="dropdown_menu ps-0 dropdown_menu-5">
+                            <li class="dropdown_item-1"> Profile</li>
+                            <li class="dropdown_item-2">Sign Out</li>
+                        </ul>
+                    </button> -->
+                    </form>
                 </div>
-            </form>
+            </nav>
+            <div class="container-fluid">
+                <div class="prods container" id="prods">
+
+                </div>
+
+            </div>
+
         </div>
-    </nav>
+
+    </div>
+
 
 
     <div class="row">
@@ -107,25 +164,43 @@
         </div>
     </div>
 
-
-
-
-    <!-- Your content -->
-    <div id="bg"></div>
-
-    <!-- Other scripts -->
-    <!-- <script type="text/javascript" src="js/particles.min.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script> -->
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
 
 
+
+
+
+    <!-- <div class="boxes">
+        <div class="box">
+            <div class="image-holder img-fluid">
+                <img [src]="course.CourseImg" alt="" />
+            </div>
+            <div class="title">
+                <h3 class="title-text">
+                    {{'Learning how to learn is always the key: book now' | translate}}
+                </h3>
+            </div>
+            <div class="level-number">
+                <h4 class="level">{{ course.courseLevel | translate }}</h4>
+                <h4 class="number">
+                    {{ course.AvailableSeats | translate }}
+                    <i class="fa fa-users red-green-Icon" aria-hidden="true" [ngStyle]="{
+                      'color': course.AvailableSeats >= 10 ? 'Green' : 'Red'
+                    }"></i>
+                </h4>
+            </div>
+            <div class="duration-price-button">
+                <div class="duration">{{ course.CourseDuration }}h</div>
+                <div class="price">{{ course.CoursePrice }}$</div>
+                <button class="add" (click)="addCourse(course)"
+                    [disabled]="studentCourses.includes(course.CourseId) || course.AvailableSeats == 0">
+                    {{studentCourses.includes(course.CourseId)?cartText:'Add to cart' | translate}}</button>
+            </div>
+        </div>
+    </div> -->
 
 </body>
 

@@ -39,6 +39,9 @@ const loaderOverlay = document.getElementById("overlay");
 
 
 
+
+
+
 const addBlurListener = (inputElement, errorElement, validationFunction) => {
     inputElement.addEventListener("blur", () => {
         const value = inputElement.value;
@@ -135,16 +138,17 @@ signUpForm.addEventListener("submit", (e) => {
     if (!usernameError && !emailError && !passwordError) {
         loader.classList.add("show");
         loaderOverlay.classList.add("show");
-
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                console.log(userCredential);
                 const userDocRef = doc(DB, "Users", user.uid);
                 // Update user data and user key
                 userData = {
                     username: userName,
                     email: user.email,
-                    displayName: userName
+                    displayName: userName,
+                    isAdmin: false,
                 };
                 userKey = user.uid;
 
@@ -212,6 +216,7 @@ gmailSignUpBtn.addEventListener("click", () => {
             userData = {
                 email: result.user.email,
                 displayName: result.user.displayName,
+                isAdmin: false
             };
             userKey = result.user.uid;
 
