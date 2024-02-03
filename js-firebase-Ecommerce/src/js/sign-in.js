@@ -132,6 +132,7 @@ signInForm.addEventListener("submit", (e) => {
             .then((Credential) => {
 
                 const user = Credential.user
+                console.log(user);
                 // Update user data and user key
                 userData = {
                     displayName: user.displayName,

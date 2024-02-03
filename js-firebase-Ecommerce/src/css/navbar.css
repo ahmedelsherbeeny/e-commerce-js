@@ -166,7 +166,9 @@ footer .cizgi {
   text-wrap: nowrap;
   border: none;
   color: rgba( 0, 0, 0 , 0.65);
-
+}
+.management-li{
+  display: none;
 }
 
 .management .dropdown_menu{

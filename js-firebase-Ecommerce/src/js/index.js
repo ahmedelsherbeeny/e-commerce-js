@@ -42,8 +42,7 @@ async function getProductData() {
 async function displayProductCards() {
     try {
         const productDataArray = await getProductData();
-        // console.log(productDataArray);
-        // Select the container where cards will be appended
+
         let div = document.getElementById('prods');
 
         productDataArray.forEach(productData => {
