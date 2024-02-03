@@ -19,7 +19,7 @@ function navBar() {
 
 
 
-const userDropdownBtn = document.querySelector(".try-dropdown");
+const userDropdownBtn = document.querySelector(".user-info");
 const displayName = document.querySelector(".display-name");
 
 const signinBtn = document.querySelector('#signin');
@@ -48,9 +48,8 @@ onAuthStateChanged(auth, (user) => {
                 });
         });
     } else {
-        console.log("none");
         // User is signed out
-        // userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
+        userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
         signinBtn.style.display = "block"; // Show the "Sign In" button
         signupBtn.style.display = "block"; // Show the "Sign Up" button
     }
@@ -83,13 +82,13 @@ function checkAuthentication() {
     const userKey = JSON.parse(localStorage.getItem("userKey"));
 
     if (!userData || !userKey) {
-        // userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
+        userDropdownBtn.style.display = 'none'; // Hide the user profile dropdown
         signinBtn.style.display = "block"; // Show the "Sign In" button
         signupBtn.style.display = "block"; // Show the "Sign Up" button
     } else {
         // The user is authenticated
-        // userDropdownBtn.style.display = 'block'; // Show the user profile dropdown
-        // displayName.textContent = userData.displayName;
+        userDropdownBtn.style.display = 'flex'; // Show the user profile dropdown
+        displayName.innerHTML += `${userData.displayName}`;
         signinBtn.style.display = "none"; // Hide the "Sign In" button
         signupBtn.style.display = "none"; // Hide the "Sign Up" button
     }

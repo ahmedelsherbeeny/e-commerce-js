@@ -16,7 +16,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-xl px-2" id="navbar" style="background-color: #ffffff;">
+    <nav class="navbar navbar-expand-xl px-2" id="navbar" style="background-color: #ffffff;z-index: 99">
+
         <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
         <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -39,8 +40,20 @@
                 <li class="nav-item active ps-1">
                     <a class="nav-link" href="featured.html"><i class="fas fa-poll fa-fw me-1"></i>Featured</a>
                 </li>
-                <li class="nav-item pl-1">
+                <li class="nav-item ps-1">
                     <a class="nav-link" href="#"><i class="fab fa-angellist fa-fw me-1"></i>Recommended</a>
+                </li>
+                <li class=" pl-1">
+
+                    <button type="button" class="management  d-flex gap-4 bg-transparent border-none">management
+
+                        <i class="fa fa-angle-down "></i>
+                        <ul class="dropdown_menu  ps-0 dropdown_menu-5">
+                            <li class="dropdown_item-1"><a>Products Mnagement</a> </li>
+                            <li class="dropdown_item-2"><a>Orders Management</a> </li>
+                            <li class="dropdown_item-1"><a>Users Management</a> </li>
+                        </ul>
+                    </button>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-5">
@@ -63,19 +76,19 @@
                         style="text-wrap: nowrap; width:120px;display: none;">Sign
                         Up</a>
                 </div>
-                <div class="dropdown">
-                    <button class="dropdown-toggle" style="display: none;" type="button" id="userDropdown"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        User Info
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="./profile.html">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#" id="signOutBtn">Sign Out</a></li>
+
+                <button type="button" class="user-info justify-content-center gap-4 bg-transparent border-none">
+                    <div class="display-name"><i class="far fa-user-circle"></i>
+                    </div>
+                    <i class="fa fa-angle-down "></i>
+                    <ul class="dropdown_menu  ps-0 dropdown_menu-5">
+                        <li class="dropdown_item-1"><a href="./profile.html">Profile</a> </li>
+                        <li class="dropdown_item-2"><a id="signOutBtn">Sign Out</a> </li>
                     </ul>
-                </div>
+                </button>
+
+
+
             </form>
         </div>
     </nav>
