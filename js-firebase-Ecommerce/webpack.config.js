@@ -16,6 +16,8 @@ module.exports = {
         editProfile: "./src/js/edit-profile.js",
         profile: "./src/js/profile.js",
         signIn: "./src/js/sign-in.js",
+        products: "./src/js/products.js",
+
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -92,6 +94,12 @@ module.exports = {
             filename: "sign-in.html",
             template: "src/sign-in.html",
             chunks: ["signIn"],
+        }),
+        new htmlWebpackPlugin({
+            title: "Products",
+            filename: "products.html",
+            template: "src/products.html",
+            chunks: ["products"],
         }),
         new MiniCssExtractPlugin({
             filename: "[name].bundle.css",

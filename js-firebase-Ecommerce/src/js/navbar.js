@@ -25,8 +25,8 @@ const userDropdownBtn = document.querySelector(".user-info");
 const displayName = document.querySelector(".display-name");
 const management = document.querySelector(".management-li");
 
-
 const signinBtn = document.querySelector('#signin');
+
 const signupBtn = document.querySelector('#signup');
 const signOutBtn = document.querySelector('#signOutBtn');
 
@@ -62,6 +62,7 @@ onAuthStateChanged(auth, (user) => {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    console.log(signupBtn);
     var navbar = document.getElementById("navbar");
     var scrollThreshold = 100; // Adjust this value as needed
 

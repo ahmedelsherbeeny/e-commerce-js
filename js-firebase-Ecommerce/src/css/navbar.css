@@ -103,7 +103,9 @@ footer .cizgi {
 }
 
 .navbar {
-  transition: background-color 0.3s ease-in-out, height 0.5s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    height 0.5s ease-in-out;
   height: 112px;
 }
 
@@ -125,7 +127,6 @@ footer .cizgi {
   font-weight: 600;
 }
 
-
 .dropdown-toggle .dropdown-menu {
   background-color: #ffffff;
 }
@@ -133,7 +134,6 @@ footer .cizgi {
 .dropdown-toggle:hover,
 .dropdown-toggle:active,
 .dropdown-toggle:visited {
-  /* color: #c5c5c263; */
   background-color: #c5c5c263 !important;
 }
 
@@ -146,15 +146,14 @@ footer .cizgi {
   position: relative;
   font-size: 18px;
   perspective: 1000px;
-  z-index: 100;
+  z-index: 90;
   text-wrap: nowrap;
   border: none;
   display: none;
-
 }
-.management{
+.management {
   padding-bottom: 20px;
-  top:5px;
+  top: 5px;
   left: 10px;
   justify-content: center;
   align-items: center;
@@ -165,40 +164,38 @@ footer .cizgi {
   z-index: 100;
   text-wrap: nowrap;
   border: none;
-  color: rgba( 0, 0, 0 , 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
-.management-li{
+.management-li {
   display: none;
 }
 
-.management .dropdown_menu{
-  width: 128%;
+.management .dropdown_menu {
+  width: 130%;
   left: 5px;
 }
-@media (min-width: 1201px) and (max-width: 1280px) {
+@media (min-width: 1201px) and (max-width: 1360px) {
   /* Styles for the desired viewport range */
-  .management{
+  .management {
     top: 28px;
     left: 0px;
   }
 }
-@media  (max-width: 1024px) {
+@media (max-width: 1200px) {
   /* Styles for the desired viewport range */
-  .management{
+  .management {
     left: 21px;
   }
 }
 
-
-
-
-.user-info:hover, .management:hover {
+.user-info:hover,
+.management:hover {
   cursor: pointer;
 }
-.user-info:hover .dropdown_menu li,.management:hover .dropdown_menu li {
+.user-info:hover .dropdown_menu li,
+.management:hover .dropdown_menu li {
   display: block;
 }
-
 
 .dropdown_menu {
   position: absolute;
@@ -215,7 +212,7 @@ footer .cizgi {
   font-size: 16px;
   opacity: 0;
 }
-.dropdown_menu li a{
+.dropdown_menu li a {
   text-decoration: none;
   color: black;
   font-family: fangsong;
@@ -225,12 +222,9 @@ footer .cizgi {
   color: #f1eded;
   border-radius: 4px;
   font-family: fangsong;
-
 }
 .dropdown_menu li:hover a {
   color: #f1eded;
- 
-
 }
 .dropdown:hover .dropdown_menu--animated {
   display: block;
@@ -251,8 +245,6 @@ footer .cizgi {
   transform-origin: top center;
   animation: translateX 300ms 120ms ease-in-out forwards;
 }
-
-
 
 @-moz-keyframes translateX {
   0% {

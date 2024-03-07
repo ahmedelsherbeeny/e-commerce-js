@@ -3,7 +3,6 @@ a {
   font-size: 20px;
 }
 body {
-  background: #efefed;
   height: 150vh;
 }
 
@@ -128,5 +127,3 @@ body {
 .offcanvas {
   --bs-offcanvas-zindex: 1055 !important;
 }
-
-

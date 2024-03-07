@@ -19,7 +19,6 @@ const productDocRef = collection(DB, "products");
 
 
 
-
 async function getProductData() {
     try {
         const querySnapshot = await getDocs(productDocRef);
@@ -68,32 +67,25 @@ async function displayProductCards() {
 
             `;
             // Append the created card to the container
-            div.appendChild(card);
+            div?.appendChild(card);
         });
 
     } catch (error) {
-        console.error(error.message);
+        console.error(error?.message);
     }
 }
 
-// Call the function to display product cards
-displayProductCards();
-
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('active');
-}
-
-// Event listener for toggling sidebar
 document.addEventListener('DOMContentLoaded', function () {
-    const togglerBtn = document.querySelector('.navbar-toggler');
-
-    if (togglerBtn) {
-        togglerBtn.addEventListener('click', function () {
-            toggleSidebar();
-        });
-    }
+    // Call the function to display product cards
+    displayProductCards();
 });
+
+
+
+
+
+
+export { getProductData }
 
 
 
