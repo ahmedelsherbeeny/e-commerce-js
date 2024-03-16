@@ -20,15 +20,27 @@
 
 <body>
 
-    <div class="d-flex" id="wrapper">
-
-        <div id="page-content-wrapper" style="flex-grow: 1;">
+    <div class="" id="wrapper">
 
 
-            <nav class="navbar navbar-expand-xl px-2" id="navbar" style="background-color: #ffffff;z-index: 99">
+        <div class="navs d-flex flex-column align-items-center justify-content-center ">
+            <div class="top-nav d-flex w-100 justify-content-between align-items-center px-3">
+                <div class="brand">
+
+                    <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
+                </div>
+
+                <div class="pe-2">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+
+                </div>
 
 
-                <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
+            </div>
+
+            <nav class="navbar navbar-expand-xl w-100 px-2" id="navbar" style="background-color: #ffce00 ;z-index: 99">
+
+
                 <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -39,18 +51,20 @@
                     </div>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <div class="collapse navbar-collapse w-100 d-flex justify-content-between align-items-center"
+                    id="navbarSupportedContent">
                     <ul class="navbar-nav  me-auto">
-                        <li class="nav-item active ps-1">
+                        <li class="nav-item active ">
                             <a class="nav-link" href="index.html"><i class="fa fa-home fa-fw me-1"></i>Home</a>
                         </li>
-                        <li class="nav-item ps-1">
+                        <li class="nav-item ">
                             <a class="nav-link" href="#"><i class="fa fa-shop fa-fw me-1"></i>Shop</a>
                         </li>
-                        <li class="nav-item ps-1">
+                        <li class="nav-item ">
                             <a class="nav-link" href="featured.html"><i class="fas fa-poll fa-fw me-1"></i>Featured</a>
                         </li>
-                        <li class="nav-item ps-1">
+                        <li class="nav-item ">
                             <a class="nav-link" href="#"><i class="fab fa-angellist fa-fw me-1"></i>Recommended</a>
                         </li>
                         <li class=" pl-1 management-li ">
@@ -59,23 +73,22 @@
 
                                 <i class="fa fa-angle-down "></i>
                                 <ul class="dropdown_menu  ps-0 dropdown_menu-5">
-                                    <li class="dropdown_item-1"><a href="products.html">Products Management</a> </li>
+                                    <li class="dropdown_item-1"><a href="products.html">Products Management</a>
+                                    </li>
                                     <li class="dropdown_item-2"><a href="#">Orders Management</a> </li>
                                     <li class="dropdown_item-1"><a href="#">Users Management</a> </li>
                                 </ul>
                             </button>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-2 ps-4">
-                        <div class="search-cart d-flex flex-grow-1 justify-content-center align-items-center gap-1">
-                            <input class="form-control me-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <div class="cart d-flex position-relative" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                                <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
-                                <span class="badge rounded-pill bg-danger counter position-absolute text-center"
-                                    style="top: -20px; right: -9px;"> 0</span>
-                            </div>
+                    <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-2 ">
+                        <div class="cart d-flex position-relative" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                            <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
+                            <span class="badge rounded-pill bg-danger counter position-absolute text-center"
+                                style="top: -20px; right: -9px;"> 0</span>
                         </div>
+
                         <div class="sign-btns d-flex justify-content-center align-items-center gap-1" id="sign-btns">
 
                             <a role="button" class="btn btn-primary py-2  text-center" href="sign-in.html"
@@ -102,14 +115,16 @@
                     </form>
                 </div>
             </nav>
-            <div class="container-fluid">
-                <div class="prods container" id="prods">
+        </div>
 
-                </div>
+
+        <div class="container-fluid">
+            <div class="prods container" id="prods">
 
             </div>
 
         </div>
+
 
     </div>
 

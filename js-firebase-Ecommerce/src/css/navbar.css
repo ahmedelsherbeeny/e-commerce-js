@@ -52,10 +52,10 @@
 }
 
 .navbar .navbar-nav .nav-link:hover {
-  color: #fbc531;
+  color: #fff8f8de;
 }
 .navbar .navbar-nav .active > .nav-link {
-  color: #fbc531;
+  color: #fff8f8de;
 }
 
 footer a.text-light:hover {
@@ -82,7 +82,7 @@ footer .cizgi {
 }
 
 .navbar-brand img {
-  width: 150px;
+  width: 130px;
   height: 60px;
   border-radius: 15px;
 }
@@ -106,7 +106,7 @@ footer .cizgi {
   transition:
     background-color 0.3s ease-in-out,
     height 0.5s ease-in-out;
-  height: 112px;
+  height: 80px;
 }
 
 .navbar.sticky {
@@ -200,7 +200,7 @@ footer .cizgi {
 .dropdown_menu {
   position: absolute;
   top: 100%;
-  left: 30px;
+  left: 8px;
   width: 67%;
   perspective: 1000px;
   z-index: -1;
