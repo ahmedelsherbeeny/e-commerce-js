@@ -61,25 +61,24 @@ onAuthStateChanged(auth, (user) => {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    console.log(signupBtn);
-    var navbar = document.getElementById("navbar");
-    var scrollThreshold = 100; // Adjust this value as needed
+// document.addEventListener("DOMContentLoaded", function () {
+//     var navbar = document.getElementById("navbar");
+//     var scrollThreshold = 100; // Adjust this value as needed
 
-    function updateNavbarPosition() {
-        if (window.pageYOffset >= scrollThreshold) {
-            navbar.classList.add("sticky");
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    }
+//     function updateNavbarPosition() {
+//         if (window.pageYOffset >= scrollThreshold) {
+//             navbar.classList.add("sticky");
+//         } else {
+//             navbar.classList.remove("sticky");
+//         }
+//     }
 
-    // Update the navbar position on scroll
-    window.addEventListener("scroll", updateNavbarPosition);
-
+//     // Update the navbar position on scroll
+//     window.addEventListener("scroll", updateNavbarPosition);
 
 
-});
+
+// });
 
 
 async function checkAuthentication() {

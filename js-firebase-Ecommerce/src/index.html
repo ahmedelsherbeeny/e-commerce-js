@@ -25,9 +25,18 @@
 
         <div class="navs d-flex flex-column align-items-center justify-content-center ">
             <div class="top-nav d-flex w-100 justify-content-between align-items-center px-3">
-                <div class="brand">
+                <div class="brand d-flex justify-content-between align-content-center">
 
                     <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
+                    <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <div class="nav-toggler-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </button>
                 </div>
 
                 <div class="pe-2">
@@ -38,22 +47,13 @@
 
             </div>
 
-            <nav class="navbar navbar-expand-xl w-100 px-2" id="navbar" style="background-color: #ffce00 ;z-index: 99">
+            <nav class="navbar navbar-expand-xl w-100 px-2" id="navbar" style="z-index: 99">
 
 
-                <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <div class="nav-toggler-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </button>
 
 
-                <div class="collapse navbar-collapse w-100 d-flex justify-content-between align-items-center"
-                    id="navbarSupportedContent">
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav  me-auto">
                         <li class="nav-item active ">
                             <a class="nav-link" href="index.html"><i class="fa fa-home fa-fw me-1"></i>Home</a>
@@ -114,6 +114,7 @@
 
                     </form>
                 </div>
+
             </nav>
         </div>
 

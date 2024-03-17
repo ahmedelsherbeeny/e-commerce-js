@@ -77,7 +77,20 @@ footer .cizgi {
 }
 @media (max-width: 1200px) {
   .navbar-collapse {
-    background-color: #ffffff;
+    background-color: #ffce00;
+    margin-top: -5px;
+    padding-left: 8px;
+  }
+}
+@media (min-width: 1199px) {
+  .navbar {
+    background-color: #ffce00;
+  }
+}
+@media (max-width: 1200px) {
+  .navbar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
@@ -88,6 +101,14 @@ footer .cizgi {
 }
 .dropdown-menu[data-bs-popper] {
   left: -74px;
+}
+.top-nav {
+  background-color: #fff;
+}
+.navs {
+  z-index: 99;
+  position: fixed;
+  width: 100%;
 }
 
 @media (max-width: 449px) {
@@ -113,7 +134,6 @@ footer .cizgi {
   height: 92px;
   position: fixed;
   width: 100%;
-  top: 0;
   background-color: #f9f9f9 !important; /* Change to the desired darker background color */
   z-index: 100;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
