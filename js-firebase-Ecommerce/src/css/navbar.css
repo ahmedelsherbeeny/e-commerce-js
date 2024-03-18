@@ -111,6 +111,12 @@ footer .cizgi {
   width: 100%;
 }
 
+.search-collapse {
+  background-color: #ffce00;
+  border-radius: 4px;
+  width: 77%;
+}
+
 @media (max-width: 449px) {
   .dropdown-menu[data-bs-popper] {
     left: 0px;
@@ -174,7 +180,6 @@ footer .cizgi {
 .management {
   padding-bottom: 20px;
   top: 5px;
-  left: 10px;
   justify-content: center;
   align-items: center;
   background: #bcbdbe;
@@ -186,8 +191,22 @@ footer .cizgi {
   border: none;
   color: rgba(0, 0, 0, 0.65);
 }
+.management:hover {
+  color: #fff8f8de;
+}
 .management-li {
   display: none;
+  position: relative;
+}
+.management-li button {
+  position: absolute;
+  top: 12%;
+}
+
+@media (max-width: 1200px) {
+  .management-li button {
+    left: -8px;
+  }
 }
 
 .management .dropdown_menu {
@@ -212,6 +231,7 @@ footer .cizgi {
 .management:hover {
   cursor: pointer;
 }
+
 .user-info:hover .dropdown_menu li,
 .management:hover .dropdown_menu li {
   display: block;

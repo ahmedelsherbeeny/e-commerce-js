@@ -28,6 +28,8 @@
                 <div class="brand d-flex justify-content-between align-content-center">
 
                     <a class="navbar-brand" href="#"><img src="./images/e-logo.jpg" alt=""></a>
+
+                    <!-- toggling-nav-menu -->
                     <button class="toggler-btn d-xl-none" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -39,21 +41,36 @@
                     </button>
                 </div>
 
-                <div class="pe-2">
+
+
+                <div class="pe-2 d-none d-xl-block d-lg-block d-md-block">
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
 
                 </div>
 
+                <!-- toggling-search-bar -->
+
+
+                <button class="toggler-btn d-xl-none d-lg-none d-md-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="nav-toggler-icon">
+                        <i class="fas fa-search"></i>
+
+                    </div>
+                </button>
 
             </div>
+            <div class="collapse search-collapse pb-1 " id="navbarSupportedContent1">
+                <div class="p-2">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+
 
             <nav class="navbar navbar-expand-xl w-100 px-2" id="navbar" style="z-index: 99">
 
-
-
-
-
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div class="collapse navbar-collapse pb-1 " id="navbarSupportedContent">
                     <ul class="navbar-nav  me-auto">
                         <li class="nav-item active ">
                             <a class="nav-link" href="index.html"><i class="fa fa-home fa-fw me-1"></i>Home</a>
@@ -69,8 +86,12 @@
                         </li>
                         <li class=" pl-1 management-li ">
 
-                            <button type="button" class="management d-flex  gap-4 bg-transparent border-none">management
+                            <button type="button" class="management d-flex  gap-4 bg-transparent border-none">
+                                <div class="name">
+                                    <i class="fas fa-chart-bar fa-fw"></i>
+                                    management
 
+                                </div>
                                 <i class="fa fa-angle-down "></i>
                                 <ul class="dropdown_menu  ps-0 dropdown_menu-5">
                                     <li class="dropdown_item-1"><a href="products.html">Products Management</a>
@@ -81,12 +102,24 @@
                             </button>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0 d-flex justify-content-center align-items-center gap-2 ">
-                        <div class="cart d-flex position-relative" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                            <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
-                            <span class="badge rounded-pill bg-danger counter position-absolute text-center"
-                                style="top: -20px; right: -9px;"> 0</span>
+                    <form
+                        class="form-inline mt-lg-0 mt-sm-4 mt-md-4 d-flex justify-content-center align-items-center gap-2 ">
+
+                        <div class="me-3 d-flex justify-content-center align-items-center gap-3">
+
+                            <div class="cart d-flex position-relative" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i>
+                                <span class="badge rounded-pill bg-danger counter position-absolute text-center"
+                                    style="top: -20px; right: -9px;"> 0</span>
+                            </div>
+
+                            <div class="whishlist d-flex position-relative" data-bs-toggle="" data-bs-target="#"
+                                aria-controls="">
+                                <i class="fas fa-heart" style="font-size: 20px;"></i>
+                                <span class="badge rounded-pill bg-danger counter position-absolute text-center"
+                                    style="top: -20px; right: -9px;"> 0</span>
+                            </div>
                         </div>
 
                         <div class="sign-btns d-flex justify-content-center align-items-center gap-1" id="sign-btns">
@@ -110,8 +143,6 @@
                             </ul>
                         </button>
 
-
-
                     </form>
                 </div>
 
@@ -127,9 +158,9 @@
         </div>
 
 
+
+
     </div>
-
-
 
 
 
