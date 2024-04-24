@@ -16,12 +16,12 @@ body {
   top: 155px;
 }
 @media (max-width: 767px) {
-  .container {
+  .prods {
     top: 91px;
   }
 }
 @media (min-width: 768px) and (max-width: 1200px) {
-  .container {
+  .prods {
     top: 65px;
   }
 }
@@ -58,7 +58,7 @@ body {
 }
 
 .card::after {
-  content: "PUMA";
+  content: "STORE";
   position: absolute;
   bottom: 0;
   left: 0;
