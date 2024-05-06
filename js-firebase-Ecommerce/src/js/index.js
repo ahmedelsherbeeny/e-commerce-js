@@ -176,6 +176,7 @@ function updateCartData() {
 
 // Function to add a product to the cart data
 function addToCart(productData, quantity) {
+    console.log(cartData);
     // Check if the product already exists in the cart
     const existingProduct = cartData.products.find(item => item.productId === productData.id);
     if (existingProduct) {
@@ -192,7 +193,15 @@ function addToCart(productData, quantity) {
     // Update total quantity
     cartData.totalQuantity += quantity;
     // Update cart data in local storage
-    updateCartData();
+    cartData.products = cartData.products.filter(product => product.quantity > 0);
+
+
+    if(cartData.totalQuantity ===0){
+        localStorage.removeItem("cart")
+    }else{
+
+        updateCartData();
+    }
 }
 
 // Function to handle the click event on the "Buy Now" button
@@ -231,22 +240,22 @@ function handleBuyButtonClick(card, productData) {
     // Event listener for the minus button
     minusButton.addEventListener('click', () => {
         let quantity = parseInt(quantityDisplay.textContent);
-        if (quantity > 1) {
+        quantity=quantity-1
+        if (quantity >= 1) {
 
-            quantity--
-            console.log(quantity);
             quantityDisplay.textContent = quantity;
             // Decrease 1 from cart when minus button is clicked
             addToCart(productData, -1);
             updateCartCounter(cartData.totalQuantity);
         } else {
-            console.log(quantity);
-            // If quantity becomes zero, display the "Buy Now" button again
+            addToCart(productData, -1);
+        
+
             plusButton.remove();
             minusButton.remove();
             quantityDisplay.remove();
             buyNowButton.style.display = 'inline-block';
-            updateCartCounter(cartData.totalQuantity);
+            updateCartCounter(cartData?.totalQuantity);
         }
     });
 }
