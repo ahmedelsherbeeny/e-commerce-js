@@ -17,132 +17,6 @@ const productDocRef = collection(DB, "products");
 
 
 
-// async function getProductData() {
-//     try {
-//         const querySnapshot = await getDocs(productDocRef);
-
-//         const productDataArray = [];
-
-//         querySnapshot.forEach(doc => {
-//             const productData = doc.data();
-//             productDataArray.push(productData);
-//         });
-
-//         return productDataArray;
-//     } catch (error) {
-//         throw new Error('Error retrieving product documents:', error);
-//     }
-// }
-
-
-// function updateCartCounter(value) {
-//     const counter = document.querySelector('.cart .counter');
-//     counter.textContent = value;
-
-// }
-
-
-// // Function to handle the click event on the "Buy Now" button
-// function handleBuyButtonClick(card) {
-
-//     // Hide the "Buy Now" button
-//     const buyNowButton = card.querySelector('.buy');
-//     buyNowButton.style.display = 'none';
-
-//     // Create the plus button
-//     const plusButton = document.createElement('button');
-//     plusButton.textContent = '+';
-//     plusButton.classList.add('quantity-btn', 'plus', 'btn', 'btn-warning', 'btn-sm');
-//     card.querySelector('.actions').appendChild(plusButton);
-
-//     // Create the quantity display
-//     const quantityDisplay = document.createElement('span');
-//     quantityDisplay.textContent = '1';
-//     quantityDisplay.classList.add('quantity-display');
-//     card.querySelector('.actions').appendChild(quantityDisplay);
-
-//     // Create the minus button
-//     const minusButton = document.createElement('button');
-//     minusButton.textContent = '-';
-//     minusButton.classList.add('quantity-btn', 'minus', 'btn', 'btn-warning', 'btn-sm');
-//     card.querySelector('.actions').appendChild(minusButton);
-
-//     // Event listener for the plus button
-//     plusButton.addEventListener('click', () => {
-//         let quantity = parseInt(quantityDisplay.textContent);
-//         quantity++;
-//         quantityDisplay.textContent = quantity;
-//         updateCartCounter(parseInt(document.querySelector('.cart .counter').textContent) + 1);
-//     });
-
-//     // Event listener for the minus button
-//     minusButton.addEventListener('click', () => {
-//         let quantity = parseInt(quantityDisplay.textContent);
-//         if (quantity > 1) {
-//             quantity--;
-//             quantityDisplay.textContent = quantity;
-//             updateCartCounter(parseInt(document.querySelector('.cart .counter').textContent) - 1);
-//         } else {
-//             // If quantity becomes zero, display the "Buy Now" button again
-//             plusButton.remove();
-//             minusButton.remove();
-//             quantityDisplay.remove();
-//             buyNowButton.style.display = 'inline-block';
-//             updateCartCounter(parseInt(document.querySelector('.cart .counter').textContent) - 1);
-//         }
-//     });
-// }
-
-
-// async function displayProductCards() {
-//     try {
-
-//         const productDataArray = await getProductData();
-
-//         let div = document.getElementById('prods');
-
-//         productDataArray.forEach(productData => {
-//             // Create a new card element for each product
-//             let card = document.createElement('div');
-//             card.classList.add('card');
-//             card.innerHTML = `
-//                 <div class="imgBox">
-//                     <img src="data:image/png;base64,${productData.image}" alt="Product Image">
-//                 </div>
-//                 <div class="contentBox">
-//                 <h3 class="">
-//                 ${productData.name}
-
-//                 </h3>
-//                 <h2 class="price">${productData.price}.<small>98</small> €</h2>
-//                 <h2 class="price"> Available: ${productData.available}</h2>
-
-//                 <div class="actions d-flex justify-content-center align-items-center gap-1 mt-2">
-
-//                 <a href="#" class="buy">Buy Now</a>
-//                 </div>
-//                 </div>
-//             `;
-//             // Event listener for the "Buy Now" button
-//             const buyNowButton = card.querySelector('.buy');
-//             buyNowButton.addEventListener('click', () => {
-//                 handleBuyButtonClick(card);
-//                 updateCartCounter(parseInt(document.querySelector('.cart .counter').textContent) + 1)
-//             });
-//             // Append the created card to the container
-//             div?.appendChild(card);
-//         });
-
-//     } catch (error) {
-//         console.error(error?.message);
-//     }
-// }
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     // Call the function to display product cards
-//     displayProductCards();
-// });
-
 
 async function getProductData() {
     try {
@@ -176,7 +50,6 @@ function updateCartData() {
 
 // Function to add a product to the cart data
 function addToCart(productData, quantity) {
-    console.log(cartData);
     // Check if the product already exists in the cart
     const existingProduct = cartData.products.find(item => item.productId === productData.id);
     if (existingProduct) {
@@ -202,7 +75,81 @@ function addToCart(productData, quantity) {
 
         updateCartData();
     }
+    updateCartDisplay(cartData);
+
 }
+
+
+
+// update cart in offcanvas
+function updateCartDisplay(cartData) {
+    const offcanvasBody = document.querySelector('#offcanvasRight .offcanvas-body');
+    offcanvasBody.innerHTML = ''; // Clear previous content
+
+    if (cartData.products.length === 0) {
+        offcanvasBody.innerHTML = '<p>Your cart is empty.</p>';
+        return;
+    }
+
+    cartData.products.forEach(product => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item', 'd-flex', 'justify-content-between', 'align-items-center');
+        cartItem.innerHTML = `
+            <div class="item-details">
+                <h5 class="mb-0"><span class="math-inline">${product.name}</h5\>
+<span class\="price"\>€</span>${product.price}</span>
+            </div>
+            <div class="quantity-controls d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-warning minus">-</button>
+                <span class="quantity">${product.quantity}</span>
+                <button class="btn btn-sm btn-warning plus">+</button>
+            </div>
+        `;
+
+        // Event listeners for quantity buttons
+        const quantityDisplay = cartItem.querySelector('.quantity');
+        const minusButton = cartItem.querySelector('.minus');
+        const plusButton = cartItem.querySelector('.plus');
+
+        minusButton.addEventListener('click', () => {
+            let quantity = parseInt(quantityDisplay.textContent);
+            quantity=quantity-1
+            if (quantity >= 1) {
+                quantityDisplay.textContent = quantity;
+                product.quantity = quantity;
+                cartData.totalQuantity -=1;
+                updateCartCounter(cartData.totalQuantity);
+                updateCartData(cartData); // Update cartData in local storage
+
+
+            } else {
+                cartItem.remove(); // Remove item from cart display if quantity reaches 0
+                product.quantity = 0; // Update product quantity in cartData
+                updateCartData(cartData); // Update cartData in local storage
+            }
+        });
+
+        plusButton.addEventListener('click', () => {
+            let quantity = parseInt(quantityDisplay.textContent);
+            quantity++;
+            quantityDisplay.textContent = quantity;
+            product.quantity = quantity;
+            cartData.totalQuantity +=1;
+            updateCartData(cartData); // Update cartData in local storage
+
+            updateCartCounter(cartData.totalQuantity);
+
+        });
+
+        offcanvasBody.appendChild(cartItem);
+    });
+}
+
+
+
+
+
+
 
 // Function to handle the click event on the "Buy Now" button
 function handleBuyButtonClick(card, productData) {
@@ -235,6 +182,10 @@ function handleBuyButtonClick(card, productData) {
         quantityDisplay.textContent = quantity;
         addToCart(productData, 1); // Add 1 to cart when plus button is clicked
         updateCartCounter(cartData.totalQuantity);
+        updateCartDisplay(cartData)
+        
+        
+
     });
 
     // Event listener for the minus button
@@ -257,6 +208,7 @@ function handleBuyButtonClick(card, productData) {
             buyNowButton.style.display = 'inline-block';
             updateCartCounter(cartData?.totalQuantity);
         }
+        updateCartDisplay(cartData)
     });
 }
 

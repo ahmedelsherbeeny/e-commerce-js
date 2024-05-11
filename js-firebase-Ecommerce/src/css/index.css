@@ -145,3 +145,28 @@ body {
 .offcanvas {
   --bs-offcanvas-zindex: 1055 !important;
 }
+
+
+.cart-item {
+  margin-bottom: 1rem; /* Add space between each product */
+  border-bottom: 1px solid #ddd; /* Optional: Add a subtle border to separate items */
+  padding-bottom: 0.5rem; /* Add some padding for better spacing */
+}
+
+.item-details {
+  display: flex;
+  align-items: center; /* Align product name and price vertically */
+}
+
+.item-details h5 {
+  margin-right: 1rem; /* Add space between name and price */
+}
+
+.price {
+  font-weight: bold; /* Make price stand out */
+}
+
+.quantity-controls button {
+  /* Adjust button styles as desired (e.g., font size, spacing) */
+}
+
