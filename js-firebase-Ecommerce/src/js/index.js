@@ -69,9 +69,9 @@ function addToCart(productData, quantity) {
     cartData.products = cartData.products.filter(product => product.quantity > 0);
 
 
-    if(cartData.totalQuantity ===0){
+    if (cartData.totalQuantity === 0) {
         localStorage.removeItem("cart")
-    }else{
+    } else {
 
         updateCartData();
     }
@@ -113,11 +113,11 @@ function updateCartDisplay(cartData) {
 
         minusButton.addEventListener('click', () => {
             let quantity = parseInt(quantityDisplay.textContent);
-            quantity=quantity-1
+            quantity = quantity - 1
             if (quantity >= 1) {
                 quantityDisplay.textContent = quantity;
                 product.quantity = quantity;
-                cartData.totalQuantity -=1;
+                cartData.totalQuantity -= 1;
                 updateCartCounter(cartData.totalQuantity);
                 updateCartData(cartData); // Update cartData in local storage
 
@@ -125,7 +125,12 @@ function updateCartDisplay(cartData) {
             } else {
                 cartItem.remove(); // Remove item from cart display if quantity reaches 0
                 product.quantity = 0; // Update product quantity in cartData
+                cartData.products = cartData.products.filter(product => product.quantity > 0);
+                cartData.totalQuantity -= 1;
                 updateCartData(cartData); // Update cartData in local storage
+                updateCartCounter(cartData.totalQuantity);
+
+
             }
         });
 
@@ -134,7 +139,7 @@ function updateCartDisplay(cartData) {
             quantity++;
             quantityDisplay.textContent = quantity;
             product.quantity = quantity;
-            cartData.totalQuantity +=1;
+            cartData.totalQuantity += 1;
             updateCartData(cartData); // Update cartData in local storage
 
             updateCartCounter(cartData.totalQuantity);
@@ -154,62 +159,61 @@ function updateCartDisplay(cartData) {
 // Function to handle the click event on the "Buy Now" button
 function handleBuyButtonClick(card, productData) {
     // Hide the "Buy Now" button
-    const buyNowButton = card.querySelector('.buy');
-    buyNowButton.style.display = 'none';
-
+    // const buyNowButton = card.querySelector('.buy');
+    // buyNowButton.textContent = 'Added To Cart';
     // Create the plus button
-    const plusButton = document.createElement('button');
-    plusButton.textContent = '+';
-    plusButton.classList.add('quantity-btn', 'plus', 'btn', 'btn-warning', 'btn-sm');
-    card.querySelector('.actions').appendChild(plusButton);
+    // const plusButton = document.createElement('button');
+    // plusButton.textContent = '+';
+    // plusButton.classList.add('quantity-btn', 'plus', 'btn', 'btn-warning', 'btn-sm');
+    // card.querySelector('.actions').appendChild(plusButton);
 
     // Create the quantity display
-    const quantityDisplay = document.createElement('span');
-    quantityDisplay.textContent = '1';
-    quantityDisplay.classList.add('quantity-display');
-    card.querySelector('.actions').appendChild(quantityDisplay);
+    // const quantityDisplay = document.createElement('span');
+    // quantityDisplay.textContent = '1';
+    // quantityDisplay.classList.add('quantity-display');
+    // card.querySelector('.actions').appendChild(quantityDisplay);
 
     // Create the minus button
-    const minusButton = document.createElement('button');
-    minusButton.textContent = '-';
-    minusButton.classList.add('quantity-btn', 'minus', 'btn', 'btn-warning', 'btn-sm');
-    card.querySelector('.actions').appendChild(minusButton);
+    // const minusButton = document.createElement('button');
+    // minusButton.textContent = '-';
+    // minusButton.classList.add('quantity-btn', 'minus', 'btn', 'btn-warning', 'btn-sm');
+    // card.querySelector('.actions').appendChild(minusButton);
 
     // Event listener for the plus button
-    plusButton.addEventListener('click', () => {
-        let quantity = parseInt(quantityDisplay.textContent);
-        quantity++;
-        quantityDisplay.textContent = quantity;
-        addToCart(productData, 1); // Add 1 to cart when plus button is clicked
-        updateCartCounter(cartData.totalQuantity);
-        updateCartDisplay(cartData)
-        
-        
+    // plusButton.addEventListener('click', () => {
+    //     let quantity = parseInt(quantityDisplay.textContent);
+    //     quantity++;
+    //     quantityDisplay.textContent = quantity;
+    //     addToCart(productData, 1); // Add 1 to cart when plus button is clicked
+    //     updateCartCounter(cartData.totalQuantity);
+    //     updateCartDisplay(cartData)
 
-    });
+
+
+    // });
 
     // Event listener for the minus button
-    minusButton.addEventListener('click', () => {
-        let quantity = parseInt(quantityDisplay.textContent);
-        quantity=quantity-1
-        if (quantity >= 1) {
+    // minusButton.addEventListener('click', () => {
+    //     let quantity = parseInt(quantityDisplay.textContent);
+    //     quantity = quantity - 1
+    //     if (quantity >= 1) {
 
-            quantityDisplay.textContent = quantity;
-            // Decrease 1 from cart when minus button is clicked
-            addToCart(productData, -1);
-            updateCartCounter(cartData.totalQuantity);
-        } else {
-            addToCart(productData, -1);
-        
+    //         quantityDisplay.textContent = quantity;
+    //         // Decrease 1 from cart when minus button is clicked
+    //         addToCart(productData, -1);
+    //         updateCartCounter(cartData.totalQuantity);
+    //     } else {
+    //         addToCart(productData, -1);
 
-            plusButton.remove();
-            minusButton.remove();
-            quantityDisplay.remove();
-            buyNowButton.style.display = 'inline-block';
-            updateCartCounter(cartData?.totalQuantity);
-        }
-        updateCartDisplay(cartData)
-    });
+
+    //         plusButton.remove();
+    //         minusButton.remove();
+    //         quantityDisplay.remove();
+    //         buyNowButton.style.display = 'inline-block';
+    //         updateCartCounter(cartData?.totalQuantity);
+    //     }
+    //     updateCartDisplay(cartData)
+    // });
 }
 
 async function displayProductCards() {
@@ -235,9 +239,14 @@ async function displayProductCards() {
             `;
             // Event listener for the "Buy Now" button
             const buyNowButton = card.querySelector('.buy');
-            buyNowButton.addEventListener('click', () => {
-                handleBuyButtonClick(card, productData);
-                addToCart(productData, 1); // Add product to cart when "Buy Now" button is clicked
+            buyNowButton.addEventListener('click', (e) => {
+                const addedToCart = document.createElement('span');
+                addedToCart.textContent = 'Added To Cart';
+                addedToCart.classList.add('quantity-display');
+                card.querySelector('.actions').appendChild(addedToCart);
+                buyNowButton.style.display = 'none'
+                addToCart(productData, 1)
+                // Add product to cart when "Buy Now" button is clicked
                 updateCartCounter(cartData.totalQuantity);
             });
             // Append the created card to the container
