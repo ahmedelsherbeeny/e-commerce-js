@@ -117,14 +117,13 @@ body {
   letter-spacing: 1px;
 }
 
-.card .contentBox .buy {
+.card .contentBox .brand {
   position: relative;
   top: 100px;
   opacity: 0;
   padding: 10px 30px;
   margin-top: 15px;
   color: #000000;
-  text-decoration: none;
   background: #ffce00;
   border-radius: 30px;
   text-transform: uppercase;
@@ -132,9 +131,11 @@ body {
   transition: 0.5s;
 }
 
-.card:hover .contentBox .buy {
+.card:hover .contentBox .brand {
   top: 0;
   opacity: 1;
+  font-size: 23px;
+  font-style: inherit;
 }
 
 .mouse {
@@ -163,10 +164,6 @@ body {
 
 .price {
   font-weight: bold; /* Make price stand out */
-}
-
-.quantity-controls button {
-  /* Adjust button styles as desired (e.g., font size, spacing) */
 }
 
 .quantity-display {

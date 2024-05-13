@@ -17,6 +17,8 @@ module.exports = {
         profile: "./src/js/profile.js",
         signIn: "./src/js/sign-in.js",
         products: "./src/js/products.js",
+        productDetails: "./src/js/product-details.js"
+
 
     },
     output: {
@@ -100,6 +102,12 @@ module.exports = {
             filename: "products.html",
             template: "src/products.html",
             chunks: ["products"],
+        }),
+        new htmlWebpackPlugin({
+            title: "Product-Details",
+            filename: "product-details.html",
+            template: "src/product-details.html",
+            chunks: ["productDetails"],
         }),
         new MiniCssExtractPlugin({
             filename: "[name].bundle.css",

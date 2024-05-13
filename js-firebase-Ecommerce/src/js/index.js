@@ -7,7 +7,7 @@ import '../js/navbar.js'
 
 
 import {
-    DB, collection, getDocs
+    DB, collection, getDocs, getDoc, doc, query, where
 
 } from "./firebase.js";
 
@@ -156,106 +156,113 @@ function updateCartDisplay(cartData) {
 
 
 
-// Function to handle the click event on the "Buy Now" button
-function handleBuyButtonClick(card, productData) {
-    // Hide the "Buy Now" button
-    // const buyNowButton = card.querySelector('.buy');
-    // buyNowButton.textContent = 'Added To Cart';
-    // Create the plus button
-    // const plusButton = document.createElement('button');
-    // plusButton.textContent = '+';
-    // plusButton.classList.add('quantity-btn', 'plus', 'btn', 'btn-warning', 'btn-sm');
-    // card.querySelector('.actions').appendChild(plusButton);
-
-    // Create the quantity display
-    // const quantityDisplay = document.createElement('span');
-    // quantityDisplay.textContent = '1';
-    // quantityDisplay.classList.add('quantity-display');
-    // card.querySelector('.actions').appendChild(quantityDisplay);
-
-    // Create the minus button
-    // const minusButton = document.createElement('button');
-    // minusButton.textContent = '-';
-    // minusButton.classList.add('quantity-btn', 'minus', 'btn', 'btn-warning', 'btn-sm');
-    // card.querySelector('.actions').appendChild(minusButton);
-
-    // Event listener for the plus button
-    // plusButton.addEventListener('click', () => {
-    //     let quantity = parseInt(quantityDisplay.textContent);
-    //     quantity++;
-    //     quantityDisplay.textContent = quantity;
-    //     addToCart(productData, 1); // Add 1 to cart when plus button is clicked
-    //     updateCartCounter(cartData.totalQuantity);
-    //     updateCartDisplay(cartData)
 
 
+// async function displayProductCards() {
+//     try {
+//         const productDataArray = await getProductData();
+//         let div = document.getElementById('prods');
+//         productDataArray.forEach(productData => {
+//             // Create a new card element for each product
+//             let card = document.createElement('div');
+//             card.classList.add('card');
+//             card.innerHTML = `
+//                 <div class="imgBox">
+//                     <img src="data:image/png;base64,${productData.image}" alt="Product Image">
+//                 </div>
+//                 <div class="contentBox">
+//                     <h3 class="">${productData.name}</h3>
+//                     <h2 class="price">${productData.price}.<small>98</small> €</h2>
+//                     <h2 class="price"> Available: ${productData.available}</h2>
 
-    // });
+//                         <div  class="brand">${productData.brand}</div>
 
-    // Event listener for the minus button
-    // minusButton.addEventListener('click', () => {
-    //     let quantity = parseInt(quantityDisplay.textContent);
-    //     quantity = quantity - 1
-    //     if (quantity >= 1) {
+//                 </div>
+//             `;
 
-    //         quantityDisplay.textContent = quantity;
-    //         // Decrease 1 from cart when minus button is clicked
-    //         addToCart(productData, -1);
-    //         updateCartCounter(cartData.totalQuantity);
-    //     } else {
-    //         addToCart(productData, -1);
+//             div?.appendChild(card);
+//         });
+//     } catch (error) {
+//         console.error(error?.message);
+//     }
+// }
 
 
-    //         plusButton.remove();
-    //         minusButton.remove();
-    //         quantityDisplay.remove();
-    //         buyNowButton.style.display = 'inline-block';
-    //         updateCartCounter(cartData?.totalQuantity);
-    //     }
-    //     updateCartDisplay(cartData)
-    // });
-}
+
 
 async function displayProductCards() {
     try {
+        // Get product data array from Firebase
         const productDataArray = await getProductData();
-        let div = document.getElementById('prods');
+
+        const productDetailsDiv = document.getElementById('prods');
+
         productDataArray.forEach(productData => {
             // Create a new card element for each product
-            let card = document.createElement('div');
+            const card = document.createElement('div');
             card.classList.add('card');
-            card.innerHTML = `
-                <div class="imgBox">
-                    <img src="data:image/png;base64,${productData.image}" alt="Product Image">
-                </div>
-                <div class="contentBox">
-                    <h3 class="">${productData.name}</h3>
-                    <h2 class="price">${productData.price}.<small>98</small> €</h2>
-                    <h2 class="price"> Available: ${productData.available}</h2>
-                    <div class="actions d-flex justify-content-center align-items-center gap-1 mt-2">
-                        <a href="#" class="buy">Buy Now</a>
-                    </div>
-                </div>
-            `;
-            // Event listener for the "Buy Now" button
-            const buyNowButton = card.querySelector('.buy');
-            buyNowButton.addEventListener('click', (e) => {
-                const addedToCart = document.createElement('span');
-                addedToCart.textContent = 'Added To Cart';
-                addedToCart.classList.add('quantity-display');
-                card.querySelector('.actions').appendChild(addedToCart);
-                buyNowButton.style.display = 'none'
-                addToCart(productData, 1)
-                // Add product to cart when "Buy Now" button is clicked
-                updateCartCounter(cartData.totalQuantity);
+
+            // Event listener for product click
+            card.addEventListener('click', async () => {
+                const productId = productData.id; // Assuming "id" property holds product ID
+
+                // Check if local storage already has product details
+                // const existingProductDetails = localStorage.getItem(`product-${productId}`);
+
+                // // Retrieve product details from Firebase if not in local storage
+                // let detailedProductData;
+                // if (!existingProductDetails) {
+                //     detailedProductData = await getProductById(productId);
+                //     console.log(detailedProductData);
+                //     localStorage.setItem(`product-${productId}`, JSON.stringify(detailedProductData));
+                // } else {
+                //     detailedProductData = JSON.parse(existingProductDetails);
+                // }
+
+                // Navigate to product-details.html with product data
+                window.location.href = `product-details.html?productId=${productId}`;
             });
-            // Append the created card to the container
-            div?.appendChild(card);
+
+            card.innerHTML = `
+          <div class="imgBox">
+            <img src="data:image/png;base64,${productData.image}" alt="Product Image">
+          </div>
+          <div class="contentBox">
+            <h3 class="">${productData.name}</h3>
+            <h2 class="price">${productData.price}.<small>98</small> €</h2>
+            <h2> Available: ${productData.available}</h2>
+            <div class="brand">${productData.brand}</div>
+          </div>
+        `;
+
+            productDetailsDiv?.appendChild(card);
         });
     } catch (error) {
         console.error(error?.message);
     }
 }
+
+
+
+
+// async function getProductById(productId) {
+//     try {
+//         const productQuery = query(collection(DB, "products"), where("id", "==", productId));
+//         const querySnapshot = await getDocs(productQuery);
+
+//         if (querySnapshot.empty) {
+//             console.warn(`Product with ID ${productId} not found in Firebase.`);
+//             return null; // Or handle the case where product is not found
+//         }
+
+//         // Assuming only one document matches the ID (handle multiple matches if needed)
+//         const productData = querySnapshot.docs[0].data();
+//         return productData;
+//     } catch (error) {
+//         console.error("Error fetching product by ID:", error);
+//         return null; // Or handle the error appropriately
+//     }
+// }
 
 document.addEventListener('DOMContentLoaded', function () {
     // Call the function to display product cards
@@ -267,7 +274,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 export { getProductData }
-
 
 
 

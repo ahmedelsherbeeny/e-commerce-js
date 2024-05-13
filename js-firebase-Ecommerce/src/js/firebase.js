@@ -32,5 +32,5 @@ export {
     doc, setDoc, createUserWithEmailAndPassword, collection,
     getDocs, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword,
     onAuthStateChanged, updateProfile,
-    query, where, getDoc
+    query, where, getDoc,
 };

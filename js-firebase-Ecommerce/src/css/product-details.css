@@ -1,0 +1,66 @@
+.product-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; /* Adjust container width if needed */
+  margin: 0 auto; /* Center the container horizontally */
+  border: 1px solid #ddd; /* Add a light border for visual separation */
+  position: absolute;
+  margin-top: 170px;
+}
+
+.product-images {
+  width: 25%; /* Adjust width for image thumbnails */
+  padding: 10px; /* Add padding for spacing */
+  border-right: 1px solid #ddd; /* Add border to separate from main image */
+}
+
+.product-main-image {
+  width: 50%; /* Adjust width for main image */
+  padding: 10px; /* Add padding for spacing */
+  display: flex;
+  justify-content: center; /* Center the main image horizontally */
+  align-items: center; /* Center the main image vertically */
+  border-right: 1px solid #ddd; /* Add border to separate from details */
+}
+
+.product-info {
+  width: 25%; /* Adjust width for product details */
+  padding: 10px; /* Add padding for spacing */
+}
+
+#main-image {
+  max-width: 100%; /* Ensure image doesn't overflow container */
+  height: 300px; /* Set a specific height for main image */
+  object-fit: cover; /* Resize image to fit container while maintaining aspect ratio */
+}
+
+.thumbnail {
+  width: 100%; /* Set width for thumbnails */
+  margin-bottom: 5px; /* Add spacing between thumbnails */
+  cursor: pointer; /* Change cursor to indicate clickability */
+}
+
+.thumbnail:hover {
+  opacity: 0.8; /* Add a hover effect to thumbnails */
+}
+
+.product-details h2,
+.product-details p {
+  margin: 5px 0; /* Add some margin for readability */
+}
+.name {
+  text-align: center;
+  font-size: 27px;
+  font-style: italic;
+}
+
+.price {
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+}
+.desc {
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 500;
+}
