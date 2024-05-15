@@ -7,7 +7,7 @@ import '../js/navbar.js'
 
 
 import {
-    DB, collection, getDocs, getDoc, doc, query, where
+    DB, collection, getDocs
 
 } from "./firebase.js";
 
@@ -151,45 +151,6 @@ function updateCartDisplay(cartData) {
 }
 
 
-
-
-
-
-
-
-
-// async function displayProductCards() {
-//     try {
-//         const productDataArray = await getProductData();
-//         let div = document.getElementById('prods');
-//         productDataArray.forEach(productData => {
-//             // Create a new card element for each product
-//             let card = document.createElement('div');
-//             card.classList.add('card');
-//             card.innerHTML = `
-//                 <div class="imgBox">
-//                     <img src="data:image/png;base64,${productData.image}" alt="Product Image">
-//                 </div>
-//                 <div class="contentBox">
-//                     <h3 class="">${productData.name}</h3>
-//                     <h2 class="price">${productData.price}.<small>98</small> €</h2>
-//                     <h2 class="price"> Available: ${productData.available}</h2>
-
-//                         <div  class="brand">${productData.brand}</div>
-
-//                 </div>
-//             `;
-
-//             div?.appendChild(card);
-//         });
-//     } catch (error) {
-//         console.error(error?.message);
-//     }
-// }
-
-
-
-
 async function displayProductCards() {
     try {
         // Get product data array from Firebase
@@ -205,19 +166,6 @@ async function displayProductCards() {
             // Event listener for product click
             card.addEventListener('click', async () => {
                 const productId = productData.id; // Assuming "id" property holds product ID
-
-                // Check if local storage already has product details
-                // const existingProductDetails = localStorage.getItem(`product-${productId}`);
-
-                // // Retrieve product details from Firebase if not in local storage
-                // let detailedProductData;
-                // if (!existingProductDetails) {
-                //     detailedProductData = await getProductById(productId);
-                //     console.log(detailedProductData);
-                //     localStorage.setItem(`product-${productId}`, JSON.stringify(detailedProductData));
-                // } else {
-                //     detailedProductData = JSON.parse(existingProductDetails);
-                // }
 
                 // Navigate to product-details.html with product data
                 window.location.href = `product-details.html?productId=${productId}`;
@@ -243,26 +191,6 @@ async function displayProductCards() {
 }
 
 
-
-
-// async function getProductById(productId) {
-//     try {
-//         const productQuery = query(collection(DB, "products"), where("id", "==", productId));
-//         const querySnapshot = await getDocs(productQuery);
-
-//         if (querySnapshot.empty) {
-//             console.warn(`Product with ID ${productId} not found in Firebase.`);
-//             return null; // Or handle the case where product is not found
-//         }
-
-//         // Assuming only one document matches the ID (handle multiple matches if needed)
-//         const productData = querySnapshot.docs[0].data();
-//         return productData;
-//     } catch (error) {
-//         console.error("Error fetching product by ID:", error);
-//         return null; // Or handle the error appropriately
-//     }
-// }
 
 document.addEventListener('DOMContentLoaded', function () {
     // Call the function to display product cards

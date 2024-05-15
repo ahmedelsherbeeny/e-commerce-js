@@ -175,39 +175,6 @@
         crossorigin="anonymous"></script>
 
 
-
-
-
-
-    <!-- <div class="boxes">
-        <div class="box">
-            <div class="image-holder img-fluid">
-                <img [src]="course.CourseImg" alt="" />
-            </div>
-            <div class="title">
-                <h3 class="title-text">
-                    {{'Learning how to learn is always the key: book now' | translate}}
-                </h3>
-            </div>
-            <div class="level-number">
-                <h4 class="level">{{ course.courseLevel | translate }}</h4>
-                <h4 class="number">
-                    {{ course.AvailableSeats | translate }}
-                    <i class="fa fa-users red-green-Icon" aria-hidden="true" [ngStyle]="{
-                      'color': course.AvailableSeats >= 10 ? 'Green' : 'Red'
-                    }"></i>
-                </h4>
-            </div>
-            <div class="duration-price-button">
-                <div class="duration">{{ course.CourseDuration }}h</div>
-                <div class="price">{{ course.CoursePrice }}$</div>
-                <button class="add" (click)="addCourse(course)"
-                    [disabled]="studentCourses.includes(course.CourseId) || course.AvailableSeats == 0">
-                    {{studentCourses.includes(course.CourseId)?cartText:'Add to cart' | translate}}</button>
-            </div>
-        </div>
-    </div> -->
-
 </body>
 
 </html>
