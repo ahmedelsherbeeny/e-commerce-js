@@ -6,7 +6,7 @@ import '../js/navbar.js'
 
 
 import {
-    DB, collection, getDocs, getDoc, doc, query, where
+    DB, collection, getDocs, getDoc, doc, query, where,auth,onAuthStateChanged,addDoc
 
 } from "./firebase.js";
 
@@ -37,10 +37,6 @@ async function getProductById(productId) {
         return null; // Or handle the error appropriately
     }
 }
-
-
-
-
 
 
 
@@ -120,6 +116,11 @@ async function displayProductDetails(productId) {
             productImages.appendChild(thumbnail);
         });
 
+        const addToCartBtn = document.querySelector('.add-to-cart-btn');
+addToCartBtn.addEventListener('click', () => {
+  addToCart(productData.id,productData);
+});
+
         // Helper function to filter products (not needed here, but included for completeness)
 
 
@@ -128,6 +129,126 @@ async function displayProductDetails(productId) {
         console.error("Error displaying product details:", error);
     }
 }
+
+
+
+// async function addToCart(productId,productData) {
+//     try {
+   
+//     onAuthStateChanged(auth, (user) => {
+
+//         console.log(user);
+
+//         if(user){
+
+
+//              getUserCart(user.uid)
+//             .then(userCartItems => {
+//                 console.log("User Cart Items:", userCartItems);
+//             })
+//             .catch(error => {
+//                 console.error("Error fetching user cart items:", error);
+//             });
+//             const cartItem = {
+//                 imageName: productData.image, // Assuming 'image' field stores the image name
+//                 imageURL: productData.imageURL, // Assuming 'imageURL' field stores the image URL
+//                 name: productData.name,
+//                 price: productData.price,
+//                 productId,
+//               };
+          
+             
+
+//         }
+
+//     })
+  
+     
+//     } catch (error) {
+//       console.error("Error adding product to cart:", error);
+//     }
+// }
+
+
+async function addToCart(productId, productData) {
+    try {
+      // Check user authentication status
+     onAuthStateChanged(auth,async (user)=>{
+
+         if (user) {
+           // Authenticated user - Fetch user's cart and check for existing product
+           const userCartItems = await getUserCart(user.uid);
+           const existingItem = userCartItems.find(item => item.productId === productId);
+     
+           if (existingItem) {
+             // Product already exists in cart - Handle quantity update (optional)
+             console.log("Product already exists in cart:", existingItem);
+             // You can optionally update the quantity here (e.g., existingItem.quantity++)
+           } else {
+             // Product not found in cart - Add it
+             const cartItem = {
+               imageName: productData.image,
+            //    imageURL: productData.imageURL,
+               name: productData.name,
+               price: productData.price,
+               productId,
+               quantity: 1, // Default quantity to 1
+             };
+             await addToUserCart(user.uid, cartItem); // Add to user's cart
+             console.log("Product added to cart successfully.");
+           }
+         } else {
+           // Unauthenticated user - Redirect to login page
+           console.log("User is not authenticated. Redirecting to login...");
+           redirectToLogin(); // Implement your login page redirection logic
+         }
+     });
+  
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+      // Handle errors appropriately (e.g., display error message to user)
+    }
+  }
+
+
+
+async function getUserCart(uid) {
+    // Get a reference to the user's document
+    const userDocRef = doc(DB, "Users", uid);
+
+    // Get a reference to the 'user-cart' subcollection
+    const userCartCollectionRef = collection(userDocRef, "user-cart");
+
+    // Fetch all documents in the 'user-cart' subcollection
+    const userCartSnapshot = await getDocs(userCartCollectionRef);
+
+
+    // Extract and return data from the snapshot
+    const userCartItems = userCartSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    return userCartItems;
+}
+
+
+
+
+
+
+
+async function addToUserCart(userId, cartItem) {
+    try {
+      // Reference the user's cart subcollection
+      const userCartRef = collection(DB, "Users", userId, "user-cart");
+
+      // Add the cart item to the user's cart subcollection
+      await addDoc(userCartRef, cartItem);
+      console.log("Product added to user's cart:", cartItem);
+    } catch (error) {
+      console.error("Error adding product to user's cart:", error);
+      // Handle errors appropriately (e.g., display error message to user)
+    }
+  }
+  
 
 displayProductDetails(productId);
 

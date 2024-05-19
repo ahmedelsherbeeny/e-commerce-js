@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import {
     getFirestore, doc,
     setDoc, collection,
-    getDocs, query, where, getDoc
+    getDocs, query, where, getDoc,addDoc
 } from "firebase/firestore";
 import {
     getAuth, createUserWithEmailAndPassword,
@@ -32,5 +32,5 @@ export {
     doc, setDoc, createUserWithEmailAndPassword, collection,
     getDocs, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword,
     onAuthStateChanged, updateProfile,
-    query, where, getDoc,
+    query, where, getDoc,addDoc
 };

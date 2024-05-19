@@ -17,10 +17,11 @@ const productDocRef = collection(DB, "products");
 
 
 
-
+console.log(productDocRef);
 async function getProductData() {
     try {
         const querySnapshot = await getDocs(productDocRef);
+        console.log(querySnapshot);
         const productDataArray = [];
         querySnapshot.forEach(doc => {
             const productData = doc.data();
