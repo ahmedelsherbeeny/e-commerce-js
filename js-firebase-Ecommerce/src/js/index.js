@@ -18,6 +18,53 @@ const productDocRef = collection(DB, "products");
 
 
 console.log(productDocRef);
+
+
+document.getElementById('phoneNumberInput').addEventListener('input', function (e) {
+    let input = e.target.value;
+
+    // Remove all non-digit characters except the leading '+'
+    input = input.replace(/(?!^\+)\D/g, '');
+
+    // Ensure it starts with +20 or allow user to start with +
+    if (input.startsWith('+')) {
+        if (!input.startsWith('+20') && input.length > 1 && input[1] !== '2') {
+            input = '+20' + input.slice(1);
+        }
+    } else if (input.startsWith('0')) {
+        input = '+20' + input.slice(1);
+    } else if (input.startsWith('20')) {
+        input = '+2' + input.slice(2);
+    } else {
+        input = '+20' + input;
+    }
+
+    // Limit to maximum 13 characters
+    if (input.length > 13) {
+        input = input.slice(0, 13);
+    }
+
+    // Update the input value
+    e.target.value = input;
+});
+
+document.getElementById('phoneNumberInput').addEventListener('keydown', function (e) {
+    // Allow backspace, delete, arrow keys, and '+' symbol
+    if (
+        e.key === 'Backspace' ||
+        e.key === 'Delete' ||
+        e.key === 'ArrowLeft' ||
+        e.key === 'ArrowRight' ||
+        e.key === '+'
+    ) {
+        return;
+    }
+
+    // Allow digits
+    if (!/^\d$/.test(e.key)) {
+        e.preventDefault();
+    }
+});
 async function getProductData() {
     try {
         const querySnapshot = await getDocs(productDocRef);
